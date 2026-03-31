@@ -261,6 +261,31 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 .jam-btn{background:var(--cobalt);color:#fff;border:none;border-radius:6px;padding:10px 18px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:2px;cursor:pointer;text-transform:uppercase;margin-top:4px;align-self:flex-start;transition:all .15s}
 .jam-btn:hover{background:#c01818}
 .byline{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--warm)}
+
+/* ── VINYL COLLECTION ── */
+.vinyl-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:28px;border-radius:8px;overflow:hidden}
+.vinyl-stat{background:var(--bg2);padding:20px 16px;text-align:center}
+.vinyl-stat-n{font-family:var(--display);font-size:32px;letter-spacing:3px;line-height:1;color:var(--cobalt)}
+.vinyl-stat-l{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--dim);margin-top:6px;font-weight:300}
+.vinyl-header{margin-bottom:8px}
+.vinyl-subtitle{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase}
+.crate-controls{margin-bottom:24px}
+.crate-search{width:100%;background:var(--bg);border:1px solid var(--border);padding:14px 16px;font-family:var(--mono);font-size:13px;font-weight:300;color:var(--ink);border-radius:6px;transition:all .2s;margin-bottom:14px;box-sizing:border-box}
+.crate-search:focus{outline:none;border-color:var(--cobalt);box-shadow:0 0 0 3px rgba(224,32,32,.08)}
+.crate-search::placeholder{color:var(--dim);opacity:.5}
+.crate-sort-row{display:flex;align-items:center;gap:8px}
+.crate-sort-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);font-weight:300}
+.crate-sort-btn{background:none;border:1px solid var(--border);padding:6px 14px;font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);cursor:pointer;border-radius:4px;transition:all .15s;font-weight:300}
+.crate-sort-btn:hover{border-color:var(--ink);color:var(--ink)}
+.crate-sort-btn.active{background:var(--ink-bright);color:var(--bg);border-color:var(--ink-bright)}
+.crate-grid{display:flex;flex-direction:column;gap:0}
+.crate-record{display:flex;align-items:center;padding:10px 12px;border-bottom:1px solid var(--border-light,rgba(0,0,0,.06));transition:all .15s;cursor:default;gap:14px}
+.crate-record:hover{background:rgba(224,32,32,.03);padding-left:18px}
+.crate-record .spine{width:6px;height:36px;border-radius:2px;flex-shrink:0}
+.crate-record .rec-info{flex:1;min-width:0}
+.crate-record .rec-artist{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crate-record .rec-title{font-family:var(--serif);font-size:15px;color:var(--ink-bright);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.crate-record .rec-year{font-family:var(--mono);font-size:11px;color:var(--dim);flex-shrink:0;min-width:36px;text-align:right;font-weight:300}
 </style>
 </head>
 </head>
@@ -277,6 +302,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
       <button onclick="showTab('watchlist',this)">Watchlist</button>
       <button onclick="showTab('shows',this)">Shows</button>
       <button onclick="showTab('profile',this)">Top Albums</button>
+      <button onclick="showTab('vinyl',this)">Crates</button>
       <button onclick="showTab('tourlog',this)">Tour Log</button>
     </nav>
   </div>
@@ -375,6 +401,28 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
         </div>
         <button class="btn" style="margin-top:0" onclick="addShow()">ADD SHOW</button>
       </div>
+    </div>
+
+    <div class="tab" id="tab-vinyl">
+      <div class="vinyl-header">
+        <div class="sec-head"><div class="sec-label">THE CRATES</div><div class="sec-rule"></div></div>
+        <div class="vinyl-subtitle" id="crate-subtitle">596 records · digging through phirst_tube's collection</div>
+      </div>
+      <div class="vinyl-stats">
+        <div class="vinyl-stat"><div class="vinyl-stat-n" id="vc-total">581</div><div class="vinyl-stat-l">Records</div></div>
+        <div class="vinyl-stat"><div class="vinyl-stat-n" id="vc-artists">0</div><div class="vinyl-stat-l">Artists</div></div>
+        <div class="vinyl-stat"><div class="vinyl-stat-n" id="vc-top"></div><div class="vinyl-stat-l" id="vc-top-label">Most Collected</div></div>
+      </div>
+      <div class="crate-controls">
+        <input class="crate-search" id="vinyl-filter" type="text" placeholder="Dig through the crates...">
+        <div class="crate-sort-row">
+          <span class="crate-sort-label">Sort:</span>
+          <button class="crate-sort-btn active" onclick="sortVinyl('artist',this)">Artist</button>
+          <button class="crate-sort-btn" onclick="sortVinyl('title',this)">Album</button>
+          <button class="crate-sort-btn" onclick="sortVinyl('year',this)">Year</button>
+        </div>
+      </div>
+      <div class="crate-grid" id="vinyl-list"></div>
     </div>
 
     <div class="tab" id="tab-tourlog">
@@ -707,7 +755,683 @@ const tasteYears=[
   ]},
 ];
 
+const vinylCollection = [
+{artist:"A Tribe Called Quest",title:"Midnight Marauders",year:""},
+{artist:"A Tribe Called Quest",title:"People's Instinctive Travels And The Paths Of Rhythm",year:""},
+{artist:"A Tribe Called Quest",title:"The Low End Theory",year:""},
+{artist:"A Tribe Called Quest",title:"The Low End Theory",year:""},
+{artist:"A Tribe Called Quest",title:"We Got It From Here…. Thank You 4 Your Service",year:""},
+{artist:"A.A. Bondy",title:"American Hearts",year:""},
+{artist:"A.A. Bondy",title:"Believers",year:""},
+{artist:"A.A. Bondy",title:"When The Devil's Loose",year:""},
+{artist:"AC/DC",title:"Back In Black",year:""},
+{artist:"AC/DC",title:"Highway To Hell",year:""},
+{artist:"Adrianne Lenker",title:"Bright Future",year:""},
+{artist:"Adrianne Lenker",title:"Hours Were The Birds",year:""},
+{artist:"Adrianne Lenker",title:"Live At Revolution Hall",year:""},
+{artist:"Adrianne Lenker",title:"Songs And Instrumentals",year:""},
+{artist:"Adrianne Lenker",title:"A-Sides And Besides",year:""},
+{artist:"Alabama Shakes",title:"Boys & Girls",year:""},
+{artist:"Alabama Shakes",title:"Sound & Color",year:""},
+{artist:"Alberta Cross",title:"Songs Of Patience",year:""},
+{artist:"Alex G",title:"Headlights",year:""},
+{artist:"Andrew Bird",title:"Are You Serious",year:""},
+{artist:"Andrew Bird",title:"Break It Yourself",year:""},
+{artist:"Andrew Bird",title:"Hands Of Glory",year:""},
+{artist:"Andrew Bird",title:"Hark!",year:""},
+{artist:"Andrew Bird",title:"My Finest Work Yet",year:""},
+{artist:"Andrew Bird",title:"The Mysterious Production Of Eggs",year:""},
+{artist:"Andrew Combs",title:"All These Dreams",year:""},
+{artist:"Andy Shauf",title:"Norm",year:""},
+{artist:"Andy Shauf",title:"The Bearer Of Bad News",year:""},
+{artist:"Andy Shauf",title:"The Neon Skyline",year:""},
+{artist:"Andy Shauf",title:"The Party",year:""},
+{artist:"Andy Shauf",title:"Wilds",year:""},
+{artist:"Animal Collective",title:"Merriweather Post Pavilion",year:""},
+{artist:"Arcade Fire",title:"Funeral",year:""},
+{artist:"Arcade Fire",title:"Neon Bible",year:""},
+{artist:"Arcade Fire",title:"Reflektor",year:""},
+{artist:"Arcade Fire",title:"The Suburbs",year:""},
+{artist:"Arcade Fire",title:"We",year:""},
+{artist:"The Avett Brothers",title:"Avett Guild",year:""},
+{artist:"The Avett Brothers",title:"I And Love And You",year:""},
+{artist:"The Band",title:"Rock Of Ages (The Band In Concert)",year:""},
+{artist:"The Beatles",title:"A Hard Day's Night",year:""},
+{artist:"The Beatles",title:"Abbey Road",year:""},
+{artist:"The Beatles",title:"Beatles For Sale",year:""},
+{artist:"The Beatles",title:"Help!",year:""},
+{artist:"The Beatles",title:"Let It Be",year:""},
+{artist:"The Beatles",title:"Magical Mystery Tour",year:""},
+{artist:"The Beatles",title:"Please Please Me",year:""},
+{artist:"The Beatles",title:"Revolver",year:""},
+{artist:"The Beatles",title:"Rubber Soul",year:""},
+{artist:"The Beatles",title:"Sgt. Pepper's Lonely Hearts Club Band",year:""},
+{artist:"The Beatles",title:"Sgt. Pepper's Lonely Hearts Club Band",year:""},
+{artist:"The Beatles",title:"The Beatles",year:""},
+{artist:"The Beatles",title:"With The Beatles",year:""},
+{artist:"Bee Gees",title:"Children Of The World",year:""},
+{artist:"Benjamin Gibbard",title:"Former Lives",year:""},
+{artist:"Better Oblivion Community Center",title:"Better Oblivion Community Center",year:""},
+{artist:"Big Red Machine",title:"How Long Do You Think It's Gonna Last?",year:""},
+{artist:"Big Thief",title:"Capacity",year:""},
+{artist:"Big Thief",title:"Double Infinity",year:""},
+{artist:"Big Thief",title:"Dragon New Warm Mountain I Believe In You",year:""},
+{artist:"Big Thief",title:"Masterpiece",year:""},
+{artist:"Big Thief",title:"Two Hands",year:""},
+{artist:"Big Thief",title:"U.F.O.F.",year:""},
+{artist:"Big Thief",title:"Vampire Empire / Born For Loving You",year:""},
+{artist:"Billy Strings",title:"Highway Prayers",year:""},
+{artist:"Billy Strings",title:"Home",year:""},
+{artist:"Billy Strings",title:"Live Vol. 1",year:""},
+{artist:"Billy Strings",title:"Renewal",year:""},
+{artist:"Black Sabbath",title:"We Sold Our Soul For Rock 'N' Roll",year:""},
+{artist:"Bob Dylan",title:"Another Side Of Bob Dylan",year:""},
+{artist:"Bob Dylan",title:"Blonde On Blonde",year:""},
+{artist:"Bob Dylan",title:"Blonde On Blonde",year:""},
+{artist:"Bob Dylan",title:"Blood On The Tracks",year:""},
+{artist:"Bob Dylan",title:"Bringing It All Back Home",year:""},
+{artist:"Bob Dylan",title:"Christmas In The Heart",year:""},
+{artist:"Bob Dylan",title:"Desire",year:""},
+{artist:"Bob Dylan",title:"Highway 61 Revisited",year:""},
+{artist:"Bob Dylan",title:"Highway 61 Revisited",year:""},
+{artist:"Bob Dylan",title:"Infidels",year:""},
+{artist:"Bob Dylan",title:"Live 1964 (Concert At Philharmonic Hall)",year:""},
+{artist:"Bob Dylan",title:"Live 1966 (The \"Royal Albert Hall\" Concert)",year:""},
+{artist:"Bob Dylan",title:"Live 1966 (The \"Royal Albert Hall\" Concert)",year:""},
+{artist:"Bob Dylan",title:"Modern Times",year:""},
+{artist:"Bob Dylan",title:"Planet Waves",year:""},
+{artist:"Bob Dylan",title:"Rolling Thunder Revue",year:""},
+{artist:"Bob Dylan",title:"Rough And Rowdy Ways",year:""},
+{artist:"Bob Dylan",title:"Saved",year:""},
+{artist:"Bob Dylan",title:"Shadow Kingdom",year:""},
+{artist:"Bob Dylan",title:"Shot Of Love",year:""},
+{artist:"Bob Dylan",title:"Slow Train Coming",year:""},
+{artist:"Bob Dylan",title:"The Best Of The Cutting Edge 1965-1966",year:""},
+{artist:"Bob Dylan",title:"The Freewheelin' Bob Dylan",year:""},
+{artist:"Bob Dylan",title:"The Freewheelin' Bob Dylan",year:""},
+{artist:"Bob Dylan",title:"The Times They Are A-Changin'",year:""},
+{artist:"Bob Dylan",title:"Travelin' Thru (The Bootleg Series Vol. 15 1967–1969)",year:""},
+{artist:"Bob Seger And The Silver Bullet Band",title:"Night Moves",year:""},
+{artist:"The Bob Seger System",title:"Ramblin' Gamblin' Man",year:""},
+{artist:"Bobby Long",title:"A Winter Tale",year:""},
+{artist:"Bon Iver",title:"22 / 10",year:""},
+{artist:"Bon Iver",title:"22, A Million",year:""},
+{artist:"Bon Iver",title:"Blood Bank",year:""},
+{artist:"Bon Iver",title:"Blood Bank",year:""},
+{artist:"Bon Iver",title:"Bon Iver, Bon Iver",year:""},
+{artist:"Bon Iver",title:"For Emma, Forever Ago",year:""},
+{artist:"Bon Iver",title:"i,i",year:""},
+{artist:"Bon Iver",title:"Sable, Fable",year:""},
+{artist:"Bon Iver",title:"Sable, Fable",year:""},
+{artist:"Boston",title:"Boston",year:""},
+{artist:"Boston",title:"Don't Look Back",year:""},
+{artist:"Boz Scaggs",title:"Boz Scaggs",year:""},
+{artist:"Bright Eyes",title:"Cassadaga",year:""},
+{artist:"Bright Eyes",title:"I'm Wide Awake, It's Morning",year:""},
+{artist:"Bruce Springsteen",title:"Greetings From Asbury Park, N.J.",year:""},
+{artist:"Buck Meek",title:"Haunted Mountain",year:""},
+{artist:"Buck Meek",title:"Two Saviors",year:""},
+{artist:"Buddy Tate",title:"Tate-A-Tate",year:""},
+{artist:"Cameron Winter",title:"Heavy Metal",year:""},
+{artist:"Carl Broemel",title:"All Birds Say",year:""},
+{artist:"Charlie Christian",title:"Charlie Christian",year:""},
+{artist:"Charlie Christian",title:"Solo Flight",year:""},
+{artist:"Charlie Parker",title:"The Very Best Of Bird",year:""},
+{artist:"Chicago Farmer",title:"Backenforth, Il",year:""},
+{artist:"Cindy Lee",title:"Diamond Jubilee",year:""},
+{artist:"Clipse",title:"Lord Willin'",year:""},
+{artist:"Coldplay",title:"A Rush Of Blood To The Head",year:""},
+{artist:"Coldplay",title:"Parachutes",year:""},
+{artist:"Coldplay",title:"X&Y",year:""},
+{artist:"Conway Twitty",title:"Play, Guitar Play",year:""},
+{artist:"Courtney Barnett",title:"Sometimes I Sit And Think, And Sometimes I Just Sit",year:""},
+{artist:"Courtney Barnett",title:"Tell Me How You Really Feel",year:""},
+{artist:"Courtney Barnett",title:"The Double EP: A Sea Of Split Peas",year:""},
+{artist:"CPNPC",title:"Xlep",year:""},
+{artist:"Cut Worms",title:"Hollow Ground",year:""},
+{artist:"Cut Worms",title:"Nobody Lives Here Anymore",year:""},
+{artist:"Cut Worms",title:"Transmitter",year:""},
+{artist:"Daft Punk",title:"Random Access Memories",year:""},
+{artist:"The Dave Brubeck Quartet",title:"Time Out",year:""},
+{artist:"Dave Matthews Band",title:"Before These Crowded Streets",year:""},
+{artist:"Dave Matthews Band",title:"Crash",year:""},
+{artist:"Dave Matthews Band",title:"Remember Two Things",year:""},
+{artist:"Dave Matthews Band",title:"Under The Table And Dreaming",year:""},
+{artist:"David Bowie",title:"David Live",year:""},
+{artist:"David Bowie",title:"The Rise And Fall Of Ziggy Stardust And The Spiders From Mars",year:""},
+{artist:"David Bowie",title:"Young Americans",year:""},
+{artist:"Dawes",title:"Nothing Is Wrong",year:""},
+{artist:"The Dead Weather",title:"Sea Of Cowards Live At Third Man Records",year:""},
+{artist:"Dean Johnson",title:"I Hope We Can Still Be Friends",year:""},
+{artist:"The Decemberists",title:"Castaways And Cutouts",year:""},
+{artist:"The Decemberists",title:"Her Majesty",year:""},
+{artist:"The Decemberists",title:"I'll Be Your Girl",year:""},
+{artist:"The Decemberists",title:"Picaresque",year:""},
+{artist:"The Decemberists",title:"The Crane Wife",year:""},
+{artist:"The Decemberists",title:"The Hazards Of Love",year:""},
+{artist:"The Decemberists",title:"The King Is Dead",year:""},
+{artist:"The Decemberists",title:"What A Terrible World, What A Beautiful World",year:""},
+{artist:"Deerhunter",title:"Fading Frontier",year:""},
+{artist:"Deerhunter",title:"Halcyon Digest",year:""},
+{artist:"Deerhunter",title:"Microcastle / Weird Era Continued",year:""},
+{artist:"Deerhunter",title:"Monomania",year:""},
+{artist:"Deerhunter",title:"Why Hasn't Everything Already Disappeared?",year:""},
+{artist:"Dehd",title:"Blue Skies",year:""},
+{artist:"Dehd",title:"Poetry",year:""},
+{artist:"DIIV",title:"Oshin",year:""},
+{artist:"Dijon",title:"Baby",year:""},
+{artist:"The Doobie Brothers",title:"Best Of The Doobies",year:""},
+{artist:"Drive-By Truckers",title:"Go-Go Boots",year:""},
+{artist:"Drive-By Truckers",title:"The Big To-Do",year:""},
+{artist:"Ducks Ltd.",title:"Harm's Way",year:""},
+{artist:"Dudu Tassa",title:"Jarak Qaribak",year:""},
+{artist:"Dwight Yoakam",title:"Buenas Noches From A Lonely Room",year:""},
+{artist:"Dwight Yoakam",title:"Guitars, Cadillacs, Etc., Etc.",year:""},
+{artist:"Dwight Yoakam",title:"Hillbilly DeLuxe",year:""},
+{artist:"Elton John",title:"Caribou",year:""},
+{artist:"Elton John",title:"Greatest Hits",year:""},
+{artist:"Elton John",title:"Madman Across The Water",year:""},
+{artist:"Elton John",title:"Rock Of The Westies",year:""},
+{artist:"Elvis Perkins In Dearland",title:"Elvis Perkins In Dearland",year:""},
+{artist:"Emily Hines",title:"These Days",year:""},
+{artist:"Eric Clapton",title:"Slowhand",year:""},
+{artist:"Ex Hex",title:"Rips",year:""},
+{artist:"Father John Misty",title:"Chloë And The Next 20th Century",year:""},
+{artist:"Father John Misty",title:"God's Favorite Customer",year:""},
+{artist:"Father John Misty",title:"I Love You, Honeybear",year:""},
+{artist:"Father John Misty",title:"Mahashmashana",year:""},
+{artist:"Fats Domino",title:"His Greatest Hits",year:""},
+{artist:"Fiona Apple",title:"Extraordinary Machine",year:""},
+{artist:"Fiona Apple",title:"Fetch The Bolt Cutters",year:""},
+{artist:"Fiona Apple",title:"The Idler Wheel Is Wiser Than The Driver Of The Screw And Whipping Cords Will Serve You More Than Ropes Will Ever Do",year:""},
+{artist:"Fiona Apple",title:"Tidal",year:""},
+{artist:"Fiona Apple",title:"When The Pawn",year:""},
+{artist:"Fleet Foxes",title:"Crack-Up",year:""},
+{artist:"Fleet Foxes",title:"First Collection 2006-2009",year:""},
+{artist:"Fleet Foxes",title:"Fleet Foxes",year:""},
+{artist:"Fleet Foxes",title:"Helplessness Blues",year:""},
+{artist:"Fleet Foxes",title:"Shore",year:""},
+{artist:"Fleetwood Mac",title:"Heroes Are Hard To Find",year:""},
+{artist:"Fleetwood Mac",title:"Rumours",year:""},
+{artist:"Floating Points",title:"Promises",year:""},
+{artist:"Florist",title:"Jellywish",year:""},
+{artist:"Florist",title:"Jellywish",year:""},
+{artist:"Foxwarren",title:"Foxwarren",year:""},
+{artist:"Foxygen",title:"We Are The 21st Century Ambassadors Of Peace & Magic",year:""},
+{artist:"Frank Ocean",title:"Channel Orange",year:""},
+{artist:"Frank Ocean",title:"Channel Orange",year:""},
+{artist:"Fruit Bats",title:"Baby Man",year:""},
+{artist:"Garth Brooks",title:"Garth Brooks",year:""},
+{artist:"Garth Brooks",title:"Ropin' The Wind",year:""},
+{artist:"Geese",title:"3D Country",year:""},
+{artist:"Geese",title:"Getting Killed",year:""},
+{artist:"Geese",title:"Getting Killed",year:""},
+{artist:"Geese",title:"Live At Third Man Records",year:""},
+{artist:"Geese",title:"Projector",year:""},
+{artist:"Genius",title:"Liquid Swords",year:""},
+{artist:"George Jones",title:"Anniversary - Ten Years Of Hits",year:""},
+{artist:"Ghostface Killah",title:"Ironman",year:""},
+{artist:"Goose",title:"2022.12.31 Cincinnati, OH",year:""},
+{artist:"Goose",title:"Autumn Crossing",year:""},
+{artist:"Goose",title:"Chain Yer Dragon",year:""},
+{artist:"Goose",title:"Dripfield",year:""},
+{artist:"Goose",title:"Everything Must Go",year:""},
+{artist:"Goose",title:"Live At Radio City Music Hall",year:""},
+{artist:"Goose",title:"Live At The Fox Theatre",year:""},
+{artist:"Goose",title:"Shenanigans Nite Club",year:""},
+{artist:"Goose",title:"Ted Tapes 2021",year:""},
+{artist:"Goose",title:"Undecided",year:""},
+{artist:"Gorillaz",title:"Demon Days",year:""},
+{artist:"The Grateful Dead",title:"American Beauty",year:""},
+{artist:"Grateful Dead",title:"Capitol Theatre, Passaic, NJ, 4/25/77",year:""},
+{artist:"The Grateful Dead",title:"Workingman's Dead",year:""},
+{artist:"Grizzly Bear",title:"Shields",year:""},
+{artist:"Haim",title:"Days Are Gone",year:""},
+{artist:"Haley Heynderickx",title:"I Need To Start A Garden",year:""},
+{artist:"Hank Williams",title:"20 Of Hank Williams' Greatest Hits",year:""},
+{artist:"Hannah Cohen",title:"Welcome Home",year:""},
+{artist:"Harry Styles",title:"Fine Line",year:""},
+{artist:"The Henry Clay People",title:"Twenty-Five For The Rest Of Our Lives",year:""},
+{artist:"Jack White",title:"Acoustic Tour 2015",year:""},
+{artist:"Jack White",title:"Blunderbuss",year:""},
+{artist:"Jack White",title:"Entering Heaven Alive",year:""},
+{artist:"Jack White",title:"Fear Of The Dawn",year:""},
+{artist:"Jack White",title:"Lazaretto",year:""},
+{artist:"Jack White",title:"Live From Bonnaroo 2014",year:""},
+{artist:"Jack White",title:"No Name",year:""},
+{artist:"Jack White",title:"No Name",year:""},
+{artist:"Jack White & The Bricks",title:"Live At The Gold Dollar",year:""},
+{artist:"The Jackson 5",title:"The Jackson 5",year:""},
+{artist:"Jamie xx",title:"In Colour",year:""},
+{artist:"Jason Isbell",title:"Foxes In The Snow",year:""},
+{artist:"Jason Isbell",title:"Southeastern",year:""},
+{artist:"Jason Isbell And The 400 Unit",title:"Here We Rest",year:""},
+{artist:"Jason Isbell And The 400 Unit",title:"Live From Alabama",year:""},
+{artist:"Jason Isbell And The 400 Unit",title:"Reunions",year:""},
+{artist:"Jason Isbell And The 400 Unit",title:"Weathervanes",year:""},
+{artist:"Jay Farrar",title:"One Fast Move Or I'm Gone: Music From Kerouac's Big Sur",year:""},
+{artist:"Jeff Tweedy",title:"Love Is The King",year:""},
+{artist:"Jeff Tweedy",title:"Starship Casual: Orbit One",year:""},
+{artist:"Jeff Tweedy",title:"Twilight Override",year:""},
+{artist:"Jeff Tweedy",title:"Warm",year:""},
+{artist:"Jeff Tweedy",title:"Warmer",year:""},
+{artist:"Jessica Pratt",title:"Here In The Pitch",year:""},
+{artist:"Jessica Pratt",title:"Jessica Pratt",year:""},
+{artist:"Jessica Pratt",title:"On Your Own Love Again",year:""},
+{artist:"Jessica Pratt",title:"Quiet Signs",year:""},
+{artist:"Jim Croce",title:"Photographs And Memories: His Greatest Hits",year:""},
+{artist:"Jim James",title:"Eternally Even",year:""},
+{artist:"Jim James",title:"Regions Of Light And Sound Of God",year:""},
+{artist:"Joanna Newsom",title:"Divers",year:""},
+{artist:"Joanna Newsom",title:"Ys",year:""},
+{artist:"John Coltrane",title:"A Love Supreme",year:""},
+{artist:"John Coltrane",title:"Alternate Takes",year:""},
+{artist:"John Coltrane",title:"Blue Train",year:""},
+{artist:"John Coltrane",title:"My Favorite Things",year:""},
+{artist:"The John Coltrane Quartet",title:"Africa/Brass",year:""},
+{artist:"John Lennon",title:"Imagine",year:""},
+{artist:"John Lennon",title:"John Lennon / Plastic Ono Band",year:""},
+{artist:"John Prine",title:"Let's Talk Dirty In Hawaiian / Kokomo",year:""},
+{artist:"John Prine",title:"Souvenirs",year:""},
+{artist:"Justin Bieber",title:"Justice",year:""},
+{artist:"Kacey Musgraves",title:"Golden Hour",year:""},
+{artist:"Kamasi Washington",title:"Heaven And Earth",year:""},
+{artist:"Kamasi Washington",title:"The Epic",year:""},
+{artist:"Kendrick Lamar",title:"Damn.",year:""},
+{artist:"Kendrick Lamar",title:"GNX",year:""},
+{artist:"Kendrick Lamar",title:"Good Kid, M.A.A.D City",year:""},
+{artist:"Kendrick Lamar",title:"Mr. Morale & The Big Steppers",year:""},
+{artist:"Kendrick Lamar",title:"Section.80",year:""},
+{artist:"Kendrick Lamar",title:"To Pimp A Butterfly",year:""},
+{artist:"Kendrick Lamar",title:"Untitled Unmastered.",year:""},
+{artist:"Kevin Morby",title:"Beautiful Strangers / No Place To Fall",year:""},
+{artist:"Kevin Morby",title:"City Music",year:""},
+{artist:"Kevin Morby",title:"Harlem River",year:""},
+{artist:"Kevin Morby",title:"More Photographs (A Continuum)",year:""},
+{artist:"Kevin Morby",title:"Oh My God",year:""},
+{artist:"Kevin Morby",title:"Singing Saw",year:""},
+{artist:"Kevin Morby",title:"Still Life",year:""},
+{artist:"Kevin Morby",title:"Sundowner",year:""},
+{artist:"Kevin Morby",title:"This Is A Photograph",year:""},
+{artist:"Kevin Morby",title:"Farewell Transmission",year:""},
+{artist:"LaMP",title:"LaMP",year:""},
+{artist:"LCD Soundsystem",title:"LCD Soundsystem",year:""},
+{artist:"LCD Soundsystem",title:"Sound Of Silver",year:""},
+{artist:"LCD Soundsystem",title:"This Is Happening",year:""},
+{artist:"Led Zeppelin",title:"Houses Of The Holy",year:""},
+{artist:"Led Zeppelin",title:"Led Zeppelin II",year:""},
+{artist:"Led Zeppelin",title:"Physical Graffiti",year:""},
+{artist:"Led Zeppelin",title:"Untitled",year:""},
+{artist:"Leon Bridges",title:"Coming Home",year:""},
+{artist:"Lil Wayne",title:"Tha Carter III (Vol.1)",year:""},
+{artist:"Local Natives",title:"Gorilla Manor",year:""},
+{artist:"Lucy Dacus",title:"Historian",year:""},
+{artist:"Lucy Dacus",title:"No Burden",year:""},
+{artist:"The Lumineers",title:"The Lumineers",year:""},
+{artist:"Mac Demarco",title:"Another One",year:""},
+{artist:"Mac DeMarco",title:"Five Easy Hot Dogs",year:""},
+{artist:"Mac Demarco",title:"Guitar",year:""},
+{artist:"Mac Demarco",title:"Here Comes The Cowboy",year:""},
+{artist:"Mac DeMarco",title:"Salad Days",year:""},
+{artist:"Mac Demarco",title:"This Old Dog",year:""},
+{artist:"Madvillain",title:"Madvillainy",year:""},
+{artist:"Main Source",title:"Breaking Atoms",year:""},
+{artist:"Merle Haggard",title:"Pancho & Lefty",year:""},
+{artist:"The Meters",title:"Cabbage Alley",year:""},
+{artist:"The Meters",title:"Look-Ka Py Py",year:""},
+{artist:"The Meters",title:"Rejuvenation",year:""},
+{artist:"Method Man",title:"Tical",year:""},
+{artist:"MF Doom",title:"MM..Food",year:""},
+{artist:"MF Doom",title:"Operation: Doomsday",year:""},
+{artist:"Michael Jackson",title:"Thriller",year:""},
+{artist:"Miles Davis",title:"'Round About Midnight",year:""},
+{artist:"Miles Davis",title:"A Tribute To Jack Johnson",year:""},
+{artist:"Miles Davis",title:"Birth Of The Cool",year:""},
+{artist:"Miles Davis",title:"Bitches Brew",year:""},
+{artist:"Miles Davis",title:"In A Silent Way",year:""},
+{artist:"Miles Davis",title:"Kind Of Blue",year:""},
+{artist:"Miles Davis",title:"Miles Davis And The Modern Jazz Giants",year:""},
+{artist:"Miles Davis",title:"On The Corner",year:""},
+{artist:"Miles Davis",title:"Porgy And Bess",year:""},
+{artist:"Miles Davis",title:"Sketches Of Spain",year:""},
+{artist:"Miles Davis",title:"Miles Ahead",year:""},
+{artist:"Mississippi Sheiks",title:"Complete Recorded Works Presented In Chronological Order Volume 4",year:""},
+{artist:"Mississippi Sheiks",title:"Complete Recorded Works Presented In Chronological Order Volume 5",year:""},
+{artist:"The Mississippi Sheiks",title:"Complete Recorded Works Presented In Chronological Order, Volume 3",year:""},
+{artist:"The Mississippi Sheiks",title:"Volume 2",year:""},
+{artist:"MJ Lenderman",title:"Boat Songs",year:""},
+{artist:"MJ Lenderman",title:"Ghost Of Your Guitar Solo",year:""},
+{artist:"MJ Lenderman",title:"Manning Fireworks",year:""},
+{artist:"MJ Lenderman",title:"MJ Lenderman",year:""},
+{artist:"MJ Lenderman And The Wind",title:"Live And Loose!",year:""},
+{artist:"Mk.gee",title:"Two Star & The Dream Police",year:""},
+{artist:"Modest Mouse",title:"The Lonesome Crowded West",year:""},
+{artist:"Monsters Of Folk",title:"Monsters Of Folk",year:""},
+{artist:"My Morning Jacket",title:"Acoustic Citsuoca",year:""},
+{artist:"My Morning Jacket",title:"At Dawn",year:""},
+{artist:"My Morning Jacket",title:"Celebración De La Ciudad Natal",year:""},
+{artist:"My Morning Jacket",title:"Circuital",year:""},
+{artist:"My Morning Jacket",title:"Evil Urges",year:""},
+{artist:"My Morning Jacket",title:"Evil Urges",year:""},
+{artist:"My Morning Jacket",title:"It Still Moves",year:""},
+{artist:"My Morning Jacket",title:"It Still Moves",year:""},
+{artist:"My Morning Jacket",title:"The Tennessee Fire",year:""},
+{artist:"My Morning Jacket",title:"The Waterfall",year:""},
+{artist:"My Morning Jacket",title:"The Waterfall",year:""},
+{artist:"My Morning Jacket",title:"The Waterfall II",year:""},
+{artist:"Nala Sinephro",title:"Space 1.8",year:""},
+{artist:"Nelly",title:"Country Grammar",year:""},
+{artist:"Neutral Milk Hotel",title:"In The Aeroplane Over The Sea",year:""},
+{artist:"New Riders Of The Purple Sage",title:"New Riders Of The Purple Sage",year:""},
+{artist:"Nilüfer Yanya",title:"Miss Universe",year:""},
+{artist:"Nilüfer Yanya",title:"Painless",year:""},
+{artist:"Nina Simone",title:"Nina Simone Sings The Blues",year:""},
+{artist:"Nirvana",title:"MTV Unplugged In New York",year:""},
+{artist:"No Artist",title:"Chilling, Thrilling Sounds Of The Haunted House",year:""},
+{artist:"The Notorious B.I.G.",title:"Ready To Die",year:""},
+{artist:"Of Monsters And Men",title:"Útí Sjó Og Inní Skóg",year:""},
+{artist:"Orebolo",title:"The Chateau",year:""},
+{artist:"Orebolo",title:"Volume I",year:""},
+{artist:"Orville Peck",title:"Bronco",year:""},
+{artist:"Orville Peck",title:"Show Pony",year:""},
+{artist:"OutKast",title:"Aquemini",year:""},
+{artist:"OutKast",title:"ATLiens",year:""},
+{artist:"OutKast",title:"Southernplayalisticadillacmuzik",year:""},
+{artist:"OutKast",title:"Speakerboxxx / The Love Below",year:""},
+{artist:"OutKast",title:"Stankonia",year:""},
+{artist:"Panda Bear",title:"Buoys",year:""},
+{artist:"Panda Bear",title:"Panda Bear Meets The Grim Reaper",year:""},
+{artist:"Panda Bear",title:"Panda Bear Meets The Grim Reaper",year:""},
+{artist:"Panda Bear",title:"Person Pitch",year:""},
+{artist:"Panda Bear",title:"Sinister Grift",year:""},
+{artist:"Panda Bear",title:"Tomboy",year:""},
+{artist:"Paul And Linda McCartney",title:"Ram",year:""},
+{artist:"McCartney",title:"McCartney",year:""},
+{artist:"McCartney",title:"McCartney III",year:""},
+{artist:"Paul Simon",title:"Graceland",year:""},
+{artist:"Paul Simon",title:"Paul Simon",year:""},
+{artist:"Perfume Genius",title:"Glory",year:""},
+{artist:"Perfume Genius",title:"Set My Heart On Fire Immediately",year:""},
+{artist:"Phish",title:"A Picture Of Nectar",year:""},
+{artist:"Phish",title:"Farmhouse",year:""},
+{artist:"Phish",title:"Hoist",year:""},
+{artist:"Phish",title:"Junta",year:""},
+{artist:"Phish",title:"Lawn Boy",year:""},
+{artist:"Phish",title:"LP On LP 01: \"Ruby Waves\" 7/14/19",year:""},
+{artist:"Phish",title:"New Year's Eve 1995 Live At Madison Square Garden",year:""},
+{artist:"Phish",title:"Rift",year:""},
+{artist:"Phish",title:"Round Room",year:""},
+{artist:"Phish",title:"The Baker's Dozen Live At Madison Square Garden",year:""},
+{artist:"Phish",title:"The Story Of The Ghost",year:""},
+{artist:"Pinegrove",title:"Cardinal",year:""},
+{artist:"Pinegrove",title:"Skylight",year:""},
+{artist:"Pink Floyd",title:"Animals",year:""},
+{artist:"Pink Floyd",title:"Meddle",year:""},
+{artist:"Pink Floyd",title:"The Dark Side Of The Moon",year:""},
+{artist:"Pink Floyd",title:"The Wall",year:""},
+{artist:"Pink Floyd",title:"Wish You Were Here",year:""},
+{artist:"Prince",title:"1999",year:""},
+{artist:"Prince",title:"Dirty Mind",year:""},
+{artist:"Prince",title:"Prince",year:""},
+{artist:"Prince",title:"Sign \"O\" The Times",year:""},
+{artist:"Prince And The Revolution",title:"Purple Rain",year:""},
+{artist:"Purity Ring",title:"Shrines",year:""},
+{artist:"R.E.M.",title:"Automatic For The People",year:""},
+{artist:"R.E.M.",title:"Murmur",year:""},
+{artist:"R.E.M.",title:"Reckoning",year:""},
+{artist:"Radiohead",title:"A Moon Shaped Pool",year:""},
+{artist:"Radiohead",title:"Amnesiac",year:""},
+{artist:"Radiohead",title:"Hail To The Thief",year:""},
+{artist:"Radiohead",title:"Hail To The Thief (Live Recordings 2003-2009)",year:""},
+{artist:"Radiohead",title:"In Rainbows",year:""},
+{artist:"Radiohead",title:"Kid A",year:""},
+{artist:"Radiohead",title:"OK Computer",year:""},
+{artist:"Radiohead",title:"The Bends",year:""},
+{artist:"Radiohead",title:"The King Of Limbs",year:""},
+{artist:"Chef Raekwon",title:"Only Built 4 Cuban Linx...",year:""},
+{artist:"Ratboys",title:"Singin' To An Empty Chair",year:""},
+{artist:"Ray Lamontagne",title:"Long Way Home",year:""},
+{artist:"Ray Lamontagne",title:"Monovision",year:""},
+{artist:"Ray Lamontagne",title:"Till The Sun Turns Black",year:""},
+{artist:"Ray Lamontagne",title:"Trouble",year:""},
+{artist:"Real Estate",title:"Atlas",year:""},
+{artist:"Real Estate",title:"Days",year:""},
+{artist:"Real Estate",title:"In Mind",year:""},
+{artist:"Real Estate",title:"Real Estate",year:""},
+{artist:"Rolling Stones",title:"Let It Bleed",year:""},
+{artist:"The Rolling Stones",title:"Some Girls",year:""},
+{artist:"Ron Gallo",title:"Heavy Meta",year:""},
+{artist:"Run The Jewels",title:"Run The Jewels",year:""},
+{artist:"Run The Jewels",title:"Run The Jewels 2",year:""},
+{artist:"Run The Jewels",title:"Run The Jewels 3",year:""},
+{artist:"Ry Cooder",title:"Bop Till You Drop",year:""},
+{artist:"Ryan Adams",title:"1989",year:""},
+{artist:"Ryan Adams",title:"29",year:""},
+{artist:"Ryan Adams",title:"Gold",year:""},
+{artist:"Ryan Adams & The Cardinals",title:"Cold Roses",year:""},
+{artist:"Ryan Adams & The Cardinals",title:"Easy Tiger",year:""},
+{artist:"Sam Cooke",title:"The Best Of Sam Cooke",year:""},
+{artist:"Sam Evian",title:"Plunge",year:""},
+{artist:"Sam Outlaw",title:"Angeleno",year:""},
+{artist:"Sam Smith",title:"In The Lonely Hour",year:""},
+{artist:"Saya Gray",title:"Saya",year:""},
+{artist:"Shamir",title:"Ratchet",year:""},
+{artist:"Shannon Lay",title:"All This Life Goin Down",year:""},
+{artist:"Sharp Pins",title:"Balloon Balloon Balloon",year:""},
+{artist:"The Sharp Pins",title:"Radio DDR",year:""},
+{artist:"Sharp Pins",title:"Turtle Rock",year:""},
+{artist:"Sharp Pins",title:"Turtle Rock",year:""},
+{artist:"The Shins",title:"Chutes Too Narrow",year:""},
+{artist:"The Shins",title:"Oh, Inverted World",year:""},
+{artist:"The Shins",title:"Port Of Morrow",year:""},
+{artist:"Sierra Ferrell",title:"Long Time Coming",year:""},
+{artist:"Sierra Ferrell",title:"Long Time Coming",year:""},
+{artist:"Sierra Ferrell",title:"Trail Of Flowers",year:""},
+{artist:"Simon & Garfunkel",title:"Bookends",year:""},
+{artist:"Simon And Garfunkel",title:"Bridge Over Troubled Water",year:""},
+{artist:"Simon And Garfunkel",title:"Parsley, Sage, Rosemary And Thyme",year:""},
+{artist:"Simon & Garfunkel",title:"Sounds Of Silence",year:""},
+{artist:"The Smile",title:"A Light For Attracting Attention",year:""},
+{artist:"The Smile",title:"Wall Of Eyes",year:""},
+{artist:"The Smiths",title:"Louder Than Bombs",year:""},
+{artist:"The Smiths",title:"The Queen Is Dead",year:""},
+{artist:"Snail Mail",title:"Lush",year:""},
+{artist:"Snail Mail",title:"Valentine",year:""},
+{artist:"Snoop Doggy Dogg",title:"Doggystyle",year:""},
+{artist:"Sonya Badigian",title:"Get Away From The Federals",year:""},
+{artist:"Spoon",title:"Lucifer On The Sofa",year:""},
+{artist:"Springtime Carnivore",title:"Midnight Room",year:""},
+{artist:"Springtime Carnivore",title:"Springtime Carnivore",year:""},
+{artist:"St. Vincent",title:"Masseduction",year:""},
+{artist:"The Strokes",title:"First Impressions Of Earth",year:""},
+{artist:"The Strokes",title:"Is This It",year:""},
+{artist:"The Strokes",title:"Room On Fire",year:""},
+{artist:"The Strokes",title:"The New Abnormal",year:""},
+{artist:"Sturgill Simpson",title:"A Sailor's Guide To Earth",year:""},
+{artist:"Sturgill Simpson",title:"Cuttin' Grass Vol. 1 (The Butcher Shoppe Sessions)",year:""},
+{artist:"Sturgill Simpson",title:"High Top Mountain",year:""},
+{artist:"Sturgill Simpson",title:"Metamodern Sounds In Country Music",year:""},
+{artist:"Sturgill Simpson",title:"The Ballad Of Dood & Juanita",year:""},
+{artist:"Sufjan Stevens",title:"Carrie & Lowell",year:""},
+{artist:"Sufjan Stevens",title:"Greetings From Michigan: The Great Lake State",year:""},
+{artist:"Sufjan Stevens",title:"Illinois",year:""},
+{artist:"Sufjan Stevens",title:"Javelin",year:""},
+{artist:"Talking Heads",title:"Speaking In Tongues",year:""},
+{artist:"The Tallest Man On Earth",title:"Shallow Grave",year:""},
+{artist:"The Tallest Man On Earth",title:"Sometimes The Blues Is Just A Passing Bird",year:""},
+{artist:"Tame Impala",title:"Currents",year:""},
+{artist:"Tame Impala",title:"Innerspeaker",year:""},
+{artist:"Tame Impala",title:"Lonerism",year:""},
+{artist:"Tame Impala",title:"The Slow Rush",year:""},
+{artist:"Tennis",title:"Yours Conditionally",year:""},
+{artist:"Tex Crick",title:"Live in... New York City",year:""},
+{artist:"The Thelonious Monk Quartet",title:"Monk's Dream",year:""},
+{artist:"Thelonious Monk Trio",title:"Thelonious Monk Trio",year:""},
+{artist:"The Thing",title:"The Thing",year:""},
+{artist:"This Is Lorelei",title:"Box for Buddy, Box for Star",year:""},
+{artist:"This Is Lorelei",title:"Holo Boy",year:""},
+{artist:"Thom Yorke",title:"Anima",year:""},
+{artist:"Thom Yorke",title:"FeelingPulledApartByHorses",year:""},
+{artist:"Toots & The Maytals",title:"Funky Kingston",year:""},
+{artist:"Trace Mountains",title:"House of Confusion",year:""},
+{artist:"Trace Mountains",title:"Lost in the Country",year:""},
+{artist:"TV On The Radio",title:"Seeds",year:""},
+{artist:"Tweedy",title:"Sukierae",year:""},
+{artist:"Twin Peaks",title:"Down In Heaven",year:""},
+{artist:"Twin Peaks",title:"Lookout Low",year:""},
+{artist:"Twin Peaks",title:"Sweet '17 Singles",year:""},
+{artist:"Twisted Teens",title:"Twisted Teens",year:""},
+{artist:"Ty Segall",title:"Ty Segall",year:""},
+{artist:"Ty Segall",title:"Freedom's Goblin",year:""},
+{artist:"Tyler, The Creator",title:"Call Me If You Get Lost",year:""},
+{artist:"Tyler, The Creator",title:"Chromakopia",year:""},
+{artist:"Tyler, The Creator",title:"Don't Tap The Glass",year:""},
+{artist:"Tyler, The Creator",title:"Igor",year:""},
+{artist:"Tyler, The Creator",title:"Scum Fuck Flower Boy",year:""},
+{artist:"Tyler, The Creator",title:"Wolf",year:""},
+{artist:"Ultimate Painting",title:"Green Lanes",year:""},
+{artist:"Ultimate Painting",title:"Live At Third Man Records",year:""},
+{artist:"Vampire Weekend",title:"Contra",year:""},
+{artist:"Vampire Weekend",title:"Father Of The Bride",year:""},
+{artist:"Vampire Weekend",title:"Frog On The Bass Drum Vol. 01: Live In Indianapolis 6.7.19",year:""},
+{artist:"Vampire Weekend",title:"Frog On The Bass Drum Vol. 02: Una Notte A Milano 7.9.19 Con",year:""},
+{artist:"Vampire Weekend",title:"Frog On The Bass Drum Vol. 03: Weekend At The Garden",year:""},
+{artist:"Vampire Weekend",title:"Modern Vampires Of The City",year:""},
+{artist:"Vampire Weekend",title:"Only God Was Above Us",year:""},
+{artist:"Vampire Weekend",title:"Vampire Weekend",year:""},
+{artist:"The Velvet Underground",title:"Loaded",year:""},
+{artist:"Volcano Choir",title:"Repave",year:""},
+{artist:"Volcano Choir",title:"Unmap",year:""},
+{artist:"The War On Drugs",title:"A Deeper Understanding",year:""},
+{artist:"The War On Drugs",title:"I Don't Live Here Anymore",year:""},
+{artist:"The War On Drugs",title:"Lost In The Dream",year:""},
+{artist:"Waxahatchee",title:"Saint Cloud",year:""},
+{artist:"Waxahatchee",title:"Tigers Blood",year:""},
+{artist:"Wednesday",title:"Bleeds",year:""},
+{artist:"Wednesday",title:"I Was Trying To Describe You To Someone",year:""},
+{artist:"Wednesday",title:"Mowing the Leaves Instead of Piling 'Em Up (Covers)",year:""},
+{artist:"Wednesday",title:"Rat Saw God",year:""},
+{artist:"Wednesday",title:"Twin Plagues",year:""},
+{artist:"Wes Montgomery",title:"Greatest Hits",year:""},
+{artist:"Wes Montgomery",title:"The Best Of Wes Montgomery Vol. 2",year:""},
+{artist:"Wet Leg",title:"Wet Leg",year:""},
+{artist:"The White Stripes",title:"De Stijl",year:""},
+{artist:"The White Stripes",title:"Elephant",year:""},
+{artist:"The White Stripes",title:"Get Behind Me Satan",year:""},
+{artist:"The White Stripes",title:"Icky Thump",year:""},
+{artist:"The White Stripes",title:"Live At The Gold Dollar III",year:""},
+{artist:"The White Stripes",title:"The Complete John Peel Sessions",year:""},
+{artist:"The White Stripes",title:"The White Stripes",year:""},
+{artist:"The White Stripes",title:"Under Amazonian Lights",year:""},
+{artist:"The White Stripes",title:"White Blood Cells",year:""},
+{artist:"Whitney",title:"Light Upon The Lake",year:""},
+{artist:"Whitney Houston",title:"Whitney Houston",year:""},
+{artist:"Wilco",title:"A Ghost Is Born",year:""},
+{artist:"Wilco",title:"A.M.",year:""},
+{artist:"Wilco",title:"Alpha Mike Foxtrot (Rare Tracks 1994-2014)",year:""},
+{artist:"Wilco",title:"Being There",year:""},
+{artist:"Wilco",title:"Cousin",year:""},
+{artist:"Wilco",title:"Cruel Country",year:""},
+{artist:"Wilco",title:"Hot Sun Cool Shroud",year:""},
+{artist:"Wilco",title:"Ode To Joy",year:""},
+{artist:"Wilco",title:"Schmilco",year:""},
+{artist:"Wilco",title:"Sky Blue Sky",year:""},
+{artist:"Wilco",title:"Star Wars",year:""},
+{artist:"Wilco",title:"Summerteeth",year:""},
+{artist:"Wilco",title:"The Whole Love",year:""},
+{artist:"Wilco",title:"Wilco (The Album)",year:""},
+{artist:"Wilco",title:"Yankee Hotel Foxtrot",year:""},
+{artist:"William Onyeabor",title:"Who Is William Onyeabor?",year:""},
+{artist:"Willie Nelson",title:"Red Headed Stranger",year:""},
+{artist:"Willie Nelson",title:"Shotgun Willie",year:""},
+{artist:"Willie Nelson",title:"The Story Of Willie Nelson",year:""},
+{artist:"Paul McCartney & Wings",title:"Band On The Run",year:""},
+{artist:"Wu-Tang Clan",title:"Enter The Wu-Tang (36 Chambers)",year:""},
+{artist:"The XX",title:"Coexist",year:""},
+{artist:"The xx",title:"xx",year:""},
+{artist:"Yes",title:"The Yes Album",year:""},
+{artist:"Youth Lagoon",title:"The Year Of Hibernation",year:""},
+{artist:"Youth Lagoon",title:"Youth Lagoon",year:""}
+];
 
+let vinylData = [...vinylCollection];
+let vinylSortColumn = 'artist';
+let vinylSortAsc = true;
+
+function renderVinyl(){
+  const grid = document.getElementById('vinyl-list');
+  grid.innerHTML = '';
+  vinylData.forEach(rec => {
+    const div = document.createElement('div');
+    div.className = 'crate-record';
+    const hue = rec.artist.split('').reduce((a,c)=>a+c.charCodeAt(0),0) % 360;
+    div.innerHTML = `<div class="spine" style="background:hsl(${hue},35%,45%)"></div><div class="rec-info"><div class="rec-artist">${escapeHtml(rec.artist)}</div><div class="rec-title">${escapeHtml(rec.title)}</div></div><div class="rec-year">${escapeHtml(rec.year)}</div>`;
+    grid.appendChild(div);
+  });
+  updateVinylStats();
+  const sub = document.getElementById('crate-subtitle');
+  if(sub) sub.textContent = vinylData.length + ' records · digging through phirst_tube\'s collection';
+}
+
+function escapeHtml(text){
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function sortVinyl(column, btn){
+  if(vinylSortColumn === column){
+    vinylSortAsc = !vinylSortAsc;
+  } else {
+    vinylSortColumn = column;
+    vinylSortAsc = true;
+  }
+  document.querySelectorAll('.crate-sort-btn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const dir = vinylSortAsc ? 1 : -1;
+  vinylData.sort((a,b) => {
+    const aVal = (a[column] || '').toString().toLowerCase();
+    const bVal = (b[column] || '').toString().toLowerCase();
+    if(column === 'year') return ((parseInt(aVal)||0) - (parseInt(bVal)||0)) * dir;
+    return aVal.localeCompare(bVal) * dir;
+  });
+  renderVinyl();
+}
+
+function updateVinylStats(){
+  document.getElementById('vc-total').textContent = vinylData.length;
+  const allArtists = new Set(vinylCollection.map(r => r.artist));
+  const filteredArtists = new Set(vinylData.map(r => r.artist));
+  document.getElementById('vc-artists').textContent = filteredArtists.size;
+  const artistCounts = {};
+  vinylCollection.forEach(r => { artistCounts[r.artist] = (artistCounts[r.artist] || 0) + 1; });
+  const sorted = Object.entries(artistCounts).sort((a,b) => b[1]-a[1]);
+  const top = sorted[0];
+  if(top){
+    document.getElementById('vc-top').textContent = top[1];
+    document.getElementById('vc-top-label').textContent = top[0];
+  }
+}
+
+function filterVinyl(){
+  const query = document.getElementById('vinyl-filter').value.toLowerCase();
+  if(!query){
+    vinylData = [...vinylCollection];
+  } else {
+    vinylData = vinylCollection.filter(r =>
+      r.artist.toLowerCase().includes(query) ||
+      r.title.toLowerCase().includes(query)
+    );
+  }
+  sortVinyl(vinylSortColumn, document.querySelector('.crate-sort-btn.active'));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const filterInput = document.getElementById('vinyl-filter');
+  if(filterInput){
+    filterInput.addEventListener('input', filterVinyl);
+  }
+});
 
 function renderAOTY(){
   const list=document.getElementById('aoty-list'); list.innerHTML='';
@@ -1005,7 +1729,7 @@ function removeShow(id){
 }
 
 // ── PERSISTENCE ─────────────────────────────────────────────────
-const DATA_VERSION = 13; // bump this when hardcoded data changes
+const DATA_VERSION = 15; // bump this when hardcoded data changes
 const LS_VERSION   = 'spincycle_version';
 const LS_ALBUMS   = 'spincycle_albums';
 const LS_WATCHLIST= 'spincycle_watchlist';
@@ -1070,7 +1794,7 @@ function loadSaved() {
 loadSaved();
 save();
 
-renderAOTY();renderWatchlist();renderSidebar();renderTaste();renderShows();
+renderAOTY();renderWatchlist();renderSidebar();renderTaste();renderShows();renderVinyl();
 
 // ── API KEY MANAGEMENT ──────────────────────────────────────────
 function getApiKey() {
