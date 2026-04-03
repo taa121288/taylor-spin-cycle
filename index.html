@@ -648,7 +648,10 @@ const allWatchlist = [
   {id:11,artist:"waterbaby",album:"Memory Be a Blade",date:"Mar 6",note:"Stockholm dream pop on Sub Pop. Nostalgic, lush, limerence-obsessed.",pri:"med"},
   {id:2,artist:"Johnny Blue Skies",album:"Mutiny After Midnight",date:"Mar 13",note:"Sturgill\u2019s groove record. Marvin Gaye-inspired dance album. Already leaked on YouTube.",pri:"high"},
   {id:3,artist:"Charlotte Cornfield",album:"Hurts Like Hell",date:"Mar 27",note:"Folk rock, pedal steel, Buck Meek harmonies.",pri:"high"},
+  {id:23,artist:"Angine de Poitrine",album:"Vol. II",date:"Apr 3",note:"Viral masked Quebec duo. Microtonal math rock. KEXP session has 3M+ views.",pri:"high"},
+  {id:24,artist:"Trey Anastasio",album:"Live and Acoustic",date:"Apr 3",note:"",pri:"med"},
   {id:16,artist:"Bon Iver",album:"VOLUMES: ONE",date:"Apr 3",note:"First non-studio album. Live archival series modeled after Dylan's Bootleg Series. 2019\u20132023 6-piece band recordings.",pri:"high"},
+  {id:25,artist:"Angelo De Augustine",album:"Angel in Plainclothes",date:"Apr 24",note:"Sufjan/Asthmatic Kitty adjacent. Recovery album after serious illness. Collaborators include Kevin Morby\u2019s string arranger and Jonathan Wilson.",pri:"med"},
   {id:12,artist:"Kacey Musgraves",album:"Middle of Nowhere",date:"May 1",note:"Texas country return. Pedal steel, accordion, Billy Strings + Willie Nelson features.",pri:"med"},
   {id:21,artist:"American Football",album:"LP4",date:"May 1",note:"First album in 7 years. Most sonically ambitious yet \u2014 layered, dissonant. Lead single \u2018Bad Moons\u2019 runs 8 mins.",pri:"med"},
   {id:22,artist:"Aldous Harding",album:"Train on the Island",date:"May 8",note:"5th album on 4AD with John Parish. Pedal steel, harp, synths. More direct than Warm Chris but still elliptical.",pri:"high"},
@@ -1713,12 +1716,15 @@ let shows = [
   {id:1,artist:"Jeff Tweedy",date:"Mar 13",venue:"Ogden Theatre, Denver CO",note:"",tickets:true},
   {id:21,artist:"Jesus Christ Taxi Driver",date:"Mar 19",venue:"Bluebird Theater, Denver CO",note:"",tickets:true},
   {id:22,artist:"The Thing",date:"Mar 19",venue:"Bluebird Theater, Denver CO",note:"",tickets:true},
+  {id:23,artist:"Mindchatter",date:"Apr 4",venue:"Mission Ballroom, Denver CO",note:"",tickets:true},
   {id:3,artist:"Ratboys",date:"Apr 13",venue:"Bluebird Theater, Denver CO",note:"",tickets:true},
   {id:4,artist:"Courtney Marie Andrews",date:"Apr 14",venue:"Globe Hall, Denver CO",note:"Valentine Tour",tickets:true},
   {id:5,artist:"Oklou",date:"Apr 22",venue:"Ogden Theatre, Denver CO",note:"",tickets:false},
   {id:6,artist:"Jason Isbell & the 400 Unit",date:"May 1",venue:"Mission Ballroom, Denver CO",note:"",tickets:false},
   {id:7,artist:"Jason Isbell & the 400 Unit",date:"May 2",venue:"Red Rocks Amphitheatre, Morrison CO",note:"",tickets:false},
   {id:8,artist:"Mac DeMarco",date:"May 3",venue:"Mission Ballroom, Denver CO",note:"",tickets:true},
+  {id:24,artist:"Trey Anastasio",date:"Jun 3",venue:"Gerald R. Ford Amphitheater, Vail CO",note:"",tickets:false},
+  {id:25,artist:"Rostam",date:"Jun 11",venue:"Gothic Theatre, Englewood CO",note:"",tickets:false},
   {id:13,artist:"Goose — Viva El Gonzo",date:"May 7–9",venue:"San José del Cabo, Mexico",note:"Festival — Jim James, Pigeons Playing Ping Pong, Cory Wong + more",tickets:true},
   {id:9,artist:"Snail Mail",date:"May 13",venue:"Ogden Theatre, Denver CO",note:"",tickets:false},
   {id:10,artist:"Sharp Pins",date:"May 13",venue:"Ogden Theatre, Denver CO",note:"",tickets:false},
@@ -1730,6 +1736,9 @@ let shows = [
   {id:16,artist:"Phish",date:"Sep 4",venue:"Dick's Sporting Goods Park, Commerce City CO",note:"",tickets:true},
   {id:17,artist:"Phish",date:"Sep 5",venue:"Dick's Sporting Goods Park, Commerce City CO",note:"",tickets:true},
   {id:18,artist:"Phish",date:"Sep 6",venue:"Dick's Sporting Goods Park, Commerce City CO",note:"",tickets:true},
+  {id:26,artist:"Billy Strings",date:"Sep 18",venue:"Ball Arena, Denver CO",note:"",tickets:true},
+  {id:27,artist:"Billy Strings",date:"Sep 19",venue:"Ball Arena, Denver CO",note:"",tickets:true},
+  {id:28,artist:"Johnny Blue Skies",date:"Sep 23",venue:"Ball Arena, Denver CO",note:"",tickets:false},
   {id:19,artist:"Big Thief",date:"Oct 6",venue:"Red Rocks Amphitheatre, Morrison CO",note:"Somersault Slide 360 Tour",tickets:false},
 ];
 
@@ -1799,7 +1808,7 @@ function removeShow(id){
 }
 
 // ── PERSISTENCE ─────────────────────────────────────────────────
-const DATA_VERSION = 15; // bump this when hardcoded data changes
+const DATA_VERSION = 16; // bump this when hardcoded data changes
 const LS_VERSION   = 'spincycle_version';
 const LS_ALBUMS   = 'spincycle_albums';
 const LS_WATCHLIST= 'spincycle_watchlist';
