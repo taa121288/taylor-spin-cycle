@@ -1724,8 +1724,8 @@ let shows = [
   {id:3,artist:"Ratboys",date:"Apr 13",venue:"Bluebird Theater, Denver CO",note:"",tickets:true},
   {id:4,artist:"Courtney Marie Andrews",date:"Apr 14",venue:"Globe Hall, Denver CO",note:"Valentine Tour",tickets:true},
   {id:5,artist:"Oklou",date:"Apr 22",venue:"Ogden Theatre, Denver CO",note:"",tickets:false},
-  {id:6,artist:"Jason Isbell & the 400 Unit",date:"May 1",venue:"Mission Ballroom, Denver CO",note:"",tickets:false},
-  {id:7,artist:"Jason Isbell & the 400 Unit",date:"May 2",venue:"Red Rocks Amphitheatre, Morrison CO",note:"",tickets:false},
+  {id:6,artist:"Jason Isbell & the 400 Unit",date:"May 1",venue:"Mission Ballroom, Denver CO",note:"",tickets:true},
+  {id:7,artist:"Jason Isbell & the 400 Unit",date:"May 2",venue:"Red Rocks Amphitheatre, Morrison CO",note:"",tickets:true},
   {id:8,artist:"Mac DeMarco",date:"May 3",venue:"Mission Ballroom, Denver CO",note:"",tickets:true},
   {id:24,artist:"Trey Anastasio",date:"Jun 3",venue:"Gerald R. Ford Amphitheater, Vail CO",note:"",tickets:false},
   {id:25,artist:"Rostam",date:"Jun 11",venue:"Gothic Theatre, Englewood CO",note:"",tickets:false},
@@ -1813,7 +1813,7 @@ function removeShow(id){
 }
 
 // ── PERSISTENCE ─────────────────────────────────────────────────
-const DATA_VERSION = 21; // bump this when hardcoded data changes
+const DATA_VERSION = 22; // bump this when hardcoded data changes
 const LS_VERSION   = 'spincycle_version';
 const LS_ALBUMS   = 'spincycle_albums';
 const LS_WATCHLIST= 'spincycle_watchlist';
