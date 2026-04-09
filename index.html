@@ -1744,7 +1744,7 @@ let shows = [
   {id:27,artist:"Billy Strings",date:"Sep 19",venue:"Ball Arena, Denver CO",note:"",tickets:true},
   {id:28,artist:"Johnny Blue Skies",date:"Sep 23",venue:"Ball Arena, Denver CO",note:"",tickets:false},
   {id:19,artist:"Big Thief",date:"Oct 6",venue:"Red Rocks Amphitheatre, Morrison CO",note:"Somersault Slide 360 Tour",tickets:false},
-  {id:29,artist:"Kurt Vile & the Violators",date:"Nov 14",venue:"The Summit, Denver CO",note:"",tickets:false},
+  {id:29,artist:"Kurt Vile & the Violators",date:"Nov 14",venue:"The Summit, Denver CO",note:"w/ Twisted Teens",tickets:false},
 ];
 
 function parseShowDate(d){
@@ -1813,7 +1813,7 @@ function removeShow(id){
 }
 
 // ── PERSISTENCE ─────────────────────────────────────────────────
-const DATA_VERSION = 19; // bump this when hardcoded data changes
+const DATA_VERSION = 20; // bump this when hardcoded data changes
 const LS_VERSION   = 'spincycle_version';
 const LS_ALBUMS   = 'spincycle_albums';
 const LS_WATCHLIST= 'spincycle_watchlist';
