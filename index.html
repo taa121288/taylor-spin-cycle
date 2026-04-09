@@ -651,6 +651,7 @@ const allWatchlist = [
   {id:3,artist:"Charlotte Cornfield",album:"Hurts Like Hell",date:"Mar 27",note:"Folk rock, pedal steel, Buck Meek harmonies.",pri:"high"},
   {id:23,artist:"Angine de Poitrine",album:"Vol. II",date:"Apr 3",note:"Viral masked Quebec duo. Microtonal math rock. KEXP session has 3M+ views.",pri:"high"},
   {id:24,artist:"Trey Anastasio",album:"Live and Acoustic",date:"Apr 3",note:"",pri:"med"},
+  {id:28,artist:"Wendy Eisenberg",album:"Wendy Eisenberg",date:"Apr 3",note:"Self-titled pivot to folk songcraft. John Hartford, Gillian Welch, John Prine influences. Baroque folk-rock with David Lynch undertones.",pri:"med"},
   {id:16,artist:"Bon Iver",album:"VOLUMES: ONE",date:"Apr 3",note:"First non-studio album. Live archival series modeled after Dylan's Bootleg Series. 2019\u20132023 6-piece band recordings.",pri:"high"},
   {id:25,artist:"Angelo De Augustine",album:"Angel in Plainclothes",date:"Apr 24",note:"Sufjan/Asthmatic Kitty adjacent. Recovery album after serious illness. Collaborators include Kevin Morby\u2019s string arranger and Jonathan Wilson.",pri:"med"},
   {id:12,artist:"Kacey Musgraves",album:"Middle of Nowhere",date:"May 1",note:"Texas country return. Pedal steel, accordion, Billy Strings + Willie Nelson features.",pri:"med"},
@@ -659,6 +660,7 @@ const allWatchlist = [
   {id:13,artist:"Kevin Morby",album:"Little Wide Open",date:"May 15",note:"Aaron Dessner-produced at Long Pond. Justin Vernon, Lucinda Williams, Meg Duffy. Most personal album yet.",pri:"high"},
   {id:15,artist:"Rostam",album:"American Stories",date:"May 15",note:"Persian instruments meet Americana. Clairo feature. First album since Changephobia. Sacred Bones-adjacent vibes via Matsor Projects.",pri:"high"},
   {id:17,artist:"Thomas Dollbaum",album:"Birds of Paradise",date:"May 22",note:"MJ Lenderman on drums. Townes/Molina ghost-country. Recorded in 4 days at Dial Back Sound w/ Clay Jones. Dear Life Records.",pri:"high"},
+  {id:27,artist:"Kurt Vile",album:"Philadelphia's been good to me",date:"May 29",note:"10th studio album on Verve. Recorded in his Philly basement. Best vocal and electric guitar record yet.",pri:"high"},
   {id:14,artist:"Death Cab for Cutie",album:"I Built You a Tower",date:"Jun 5",note:"First indie release in 20 years (ANTI-). Produced by John Congleton. Ben Gibbard on loss and grief.",pri:"med"},
   {id:26,artist:"The Strokes",album:"Reality Awaits",date:"Jun 26",note:"",pri:"high"},
 ];
@@ -1742,6 +1744,7 @@ let shows = [
   {id:27,artist:"Billy Strings",date:"Sep 19",venue:"Ball Arena, Denver CO",note:"",tickets:true},
   {id:28,artist:"Johnny Blue Skies",date:"Sep 23",venue:"Ball Arena, Denver CO",note:"",tickets:false},
   {id:19,artist:"Big Thief",date:"Oct 6",venue:"Red Rocks Amphitheatre, Morrison CO",note:"Somersault Slide 360 Tour",tickets:false},
+  {id:29,artist:"Kurt Vile & the Violators",date:"Nov 14",venue:"The Summit, Denver CO",note:"",tickets:false},
 ];
 
 function parseShowDate(d){
@@ -1810,7 +1813,7 @@ function removeShow(id){
 }
 
 // ── PERSISTENCE ─────────────────────────────────────────────────
-const DATA_VERSION = 18; // bump this when hardcoded data changes
+const DATA_VERSION = 19; // bump this when hardcoded data changes
 const LS_VERSION   = 'spincycle_version';
 const LS_ALBUMS   = 'spincycle_albums';
 const LS_WATCHLIST= 'spincycle_watchlist';
