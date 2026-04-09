@@ -637,11 +637,12 @@ function applyImage(url, imgEl, covEl){
 
 let albums = [
   {id:1,rank:1,artist:"Ratboys",title:"Singin’ to an Empty Chair",cover:"",tier:"AOTY",note:"#1 so far. Ratboys at their peak — fuzzed indie rock meets Midwest heart.",date:"Feb 6"},
-  {id:11,rank:2,artist:"Cut Worms",title:"Transmitter",cover:"",tier:"AOTY",note:"Jeff Tweedy-produced at The Loft. Darker, richer — Big Star meets Elliott Smith via late Wilco warmth.",date:"Mar 13"},
-  {id:2,rank:3,artist:"Twisted Teens",title:"Blame the Clown",cover:"",tier:"AOTY",note:"Country-fried steel-guitar punk. Ragged and alive.",date:"Feb 13"},
-  {id:3,rank:4,artist:"Courtney Marie Andrews",title:"Valentine",cover:"",tier:"AOTY",note:"Tape-recorded in LA. Big Star's Third meets Emmylou Harris.",date:"Jan 16"},
-  {id:12,rank:5,artist:"Snail Mail",title:"Ricochet",cover:"",tier:"AOTY",note:"",date:"Mar 27"},
-  {id:10,rank:6,artist:"Buck Meek",title:"The Mirror",cover:"",note:"Big Thief adjacent. Restrained and gorgeous.",tier:"top",date:"Feb 27"},
+  {id:13,rank:2,artist:"Bon Iver",title:"VOLUMES: ONE",cover:"",tier:"AOTY",note:"First non-studio album. Live archival series — 2019\u20132023 6-piece band recordings.",date:"Apr 3"},
+  {id:11,rank:3,artist:"Cut Worms",title:"Transmitter",cover:"",tier:"AOTY",note:"Jeff Tweedy-produced at The Loft. Darker, richer — Big Star meets Elliott Smith via late Wilco warmth.",date:"Mar 13"},
+  {id:2,rank:4,artist:"Twisted Teens",title:"Blame the Clown",cover:"",tier:"AOTY",note:"Country-fried steel-guitar punk. Ragged and alive.",date:"Feb 13"},
+  {id:3,rank:5,artist:"Courtney Marie Andrews",title:"Valentine",cover:"",tier:"AOTY",note:"Tape-recorded in LA. Big Star’s Third meets Emmylou Harris.",date:"Jan 16"},
+  {id:12,rank:6,artist:"Snail Mail",title:"Ricochet",cover:"",tier:"AOTY",note:"",date:"Mar 27"},
+  {id:10,rank:7,artist:"Buck Meek",title:"The Mirror",cover:"",note:"Big Thief adjacent. Restrained and gorgeous.",tier:"top",date:"Feb 27"},
 ];
 
 const allWatchlist = [
@@ -1809,7 +1810,7 @@ function removeShow(id){
 }
 
 // ── PERSISTENCE ─────────────────────────────────────────────────
-const DATA_VERSION = 17; // bump this when hardcoded data changes
+const DATA_VERSION = 18; // bump this when hardcoded data changes
 const LS_VERSION   = 'spincycle_version';
 const LS_ALBUMS   = 'spincycle_albums';
 const LS_WATCHLIST= 'spincycle_watchlist';
