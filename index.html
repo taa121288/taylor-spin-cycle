@@ -37,7 +37,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg)!important;color:var(--ink);font-family:var(--mono);font-size:14px;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;letter-spacing:.01em}
 body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:.4}
 
-/* ââ MASTHEAD ââ */
+/* &#9472;&#9472; MASTHEAD &#9472;&#9472; */
 .masthead{padding:36px 48px 0;border-bottom:1px solid var(--border);position:relative}
 .masthead::after{content:'';position:absolute;bottom:-1px;left:48px;width:120px;height:1px;background:var(--cobalt)}
 .masthead-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;padding-bottom:28px}
@@ -52,18 +52,18 @@ body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xm
 .nav button:hover{color:var(--ink)}
 .nav button.active{color:var(--cobalt);border-bottom-color:var(--cobalt)}
 
-/* ââ LAYOUT ââ */
+/* &#9472;&#9472; LAYOUT &#9472;&#9472; */
 .main-grid{display:grid;grid-template-columns:1fr;max-width:960px;margin:0 auto}
 .left-col{padding:48px 48px 80px;min-height:calc(100vh - 160px)}
 .right-col{display:none}
 
-/* ââ SECTION HEADERS ââ */
+/* &#9472;&#9472; SECTION HEADERS &#9472;&#9472; */
 .sec-head{display:flex;align-items:center;gap:16px;margin-bottom:32px}
 .sec-label{font-family:var(--display);font-size:24px;letter-spacing:6px;line-height:1;color:var(--ink-bright);white-space:nowrap}
 .sec-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
 .sec-count{font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:3px;white-space:nowrap}
 
-/* ââ AOTY LIST ââ */
+/* &#9472;&#9472; AOTY LIST &#9472;&#9472; */
 .aoty-list{list-style:none}
 .aoty-item{display:flex;align-items:center;gap:22px;padding:22px 16px;border-bottom:1px solid var(--border-light);cursor:grab;transition:all .3s var(--ease-out);border-radius:8px;margin:0 -16px}
 .aoty-item:hover{background:var(--surface);border-color:transparent}
@@ -90,13 +90,13 @@ body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xm
 .aoty-item.dragging{opacity:.15}
 .aoty-item.dragover{border-top:2px solid var(--cobalt)}
 
-/* ââ STATS ââ */
+/* &#9472;&#9472; STATS &#9472;&#9472; */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:40px;border-radius:8px;overflow:hidden}
 .stat{background:var(--bg2);padding:22px 16px;text-align:center}
 .stat-n{font-family:var(--display);font-size:38px;letter-spacing:3px;line-height:1;color:var(--cobalt)}
 .stat-l{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--dim);margin-top:6px;font-weight:300}
 
-/* ââ FORMS ââ */
+/* &#9472;&#9472; FORMS &#9472;&#9472; */
 .add-form{margin-top:40px;padding:28px;background:var(--surface);border-radius:10px;border:1px solid var(--border)}
 .form-title{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:16px;font-weight:400}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
@@ -109,7 +109,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 .btn:hover{background:#c01818;color:#fff;box-shadow:0 4px 20px rgba(224,32,32,.2)}
 .btn:active{transform:scale(.98)}
 
-/* ââ WATCHLIST ââ */
+/* &#9472;&#9472; WATCHLIST &#9472;&#9472; */
 .wl-item{padding:18px 0;border-bottom:1px solid var(--border-light);transition:background .15s}
 .pdot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:7px;vertical-align:middle}
 .ph{background:var(--cobalt)}.pm{background:var(--dim)}.pl{background:var(--dim-light)}
@@ -118,14 +118,14 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 .wartist{font-family:var(--mono);font-size:10px;font-weight:400;text-transform:uppercase;letter-spacing:2.5px;color:var(--dim);margin-top:5px}
 .wnote{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--dim);margin-top:6px;line-height:1.5}
 
-/* ââ SIDEBAR ââ */
+/* &#9472;&#9472; SIDEBAR &#9472;&#9472; */
 .sb-item{padding:10px 0;border-bottom:1px solid var(--border)}
 
-/* ââ TABS ââ */
+/* &#9472;&#9472; TABS &#9472;&#9472; */
 .tab{display:none}.tab.active{display:block;animation:fadeIn .4s var(--ease-out)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-/* ââ TASTE PROFILE ââ */
+/* &#9472;&#9472; TASTE PROFILE &#9472;&#9472; */
 .ty-section{margin-bottom:32px}
 .ty-year{font-family:var(--display);font-size:28px;letter-spacing:5px;border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:14px;color:var(--ink-bright)}
 .ty-tags{display:flex;flex-wrap:wrap;gap:8px}
@@ -139,7 +139,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 .orn{text-align:center;color:var(--dim-light);margin:32px 0;letter-spacing:12px;font-size:11px}
 .pq{font-family:var(--serif);font-size:19px;font-style:italic;border-left:2px solid var(--cobalt);padding-left:22px;margin:28px 0;line-height:1.6;color:var(--warm)}
 
-/* ââ CHAT ââ */
+/* &#9472;&#9472; CHAT &#9472;&#9472; */
 .chat-box{margin-top:28px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .chat-head{background:var(--surface);padding:14px 18px;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);color:var(--dim)}
 .chat-status{color:var(--cobalt);font-size:8px;letter-spacing:2px}
@@ -156,7 +156,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 .ldots::after{content:'...';animation:dots 1s steps(3,end) infinite}
 @keyframes dots{0%,33%{content:'.'}34%,66%{content:'..'}67%,100%{content:'...'}}
 
-/* ââ RESPONSIVE ââ */
+/* &#9472;&#9472; RESPONSIVE &#9472;&#9472; */
 @media(max-width:768px){
   body{font-size:13px}
   .main-grid{grid-template-columns:1fr}
@@ -198,7 +198,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
   .jam-scroll-box{height:300px}
 }
 
-/* ââ SUGGEST DRAWER ââ */
+/* &#9472;&#9472; SUGGEST DRAWER &#9472;&#9472; */
 .suggest-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--mono);font-size:9px;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);cursor:pointer;transition:all .25s var(--ease-out);display:flex;align-items:center;gap:8px;white-space:nowrap}
 .suggest-btn:hover{border-color:var(--cobalt);color:var(--cobalt);background:var(--cobalt-light)}
 .suggest-btn .sb-icon{font-size:11px}
@@ -221,7 +221,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 .suggest-spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--cobalt);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ââ TOUR LOG ââ */
+/* &#9472;&#9472; TOUR LOG &#9472;&#9472; */
 .jam-header{text-align:center;padding:32px 0 0;margin-bottom:28px}
 .jam-rainbow-rule{height:3px;background:linear-gradient(90deg,#e02020,#ff6040,#ffc020,#40c040,#2080e0,#a040c0);border-radius:1px;margin-bottom:20px}
 .jam-title{font-family:var(--display);font-size:52px;letter-spacing:10px;color:var(--ink-bright);margin-bottom:8px}
@@ -262,7 +262,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 .jam-btn:hover{background:#c01818}
 .byline{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--warm)}
 
-/* ââ VINYL COLLECTION ââ */
+/* &#9472;&#9472; VINYL COLLECTION &#9472;&#9472; */
 .vinyl-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:28px;border-radius:8px;overflow:hidden}
 .vinyl-stat{background:var(--bg2);padding:20px 16px;text-align:center}
 .vinyl-stat-n{font-family:var(--display);font-size:32px;letter-spacing:3px;line-height:1;color:var(--cobalt)}
@@ -288,7 +288,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 .crate-record{position:relative;display:flex;flex-direction:column;cursor:pointer;transition:transform .3s var(--ease-out);border:none;padding:0;background:transparent}
 .crate-record:hover{transform:translateY(-4px)}
 
-/* Album cover container â overflow visible so vinyl peeks out */
+/* Album cover container &#8212; overflow visible so vinyl peeks out */
 .album-cover-wrapper{position:relative;width:100%;aspect-ratio:1;border-radius:8px;overflow:visible;background:var(--surface);transition:all .3s var(--ease-out)}
 
 /* The cover itself clips its contents */
@@ -296,7 +296,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 .crate-record:hover .album-cover-wrapper .cov{box-shadow:0 12px 32px rgba(0,0,0,.25)}
 .album-cover-wrapper .cov img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* Vinyl disc â sits behind the cover, slides out on hover */
+/* Vinyl disc &#8212; sits behind the cover, slides out on hover */
 .vinyl-disc{position:absolute;right:0;top:50%;transform:translateY(-50%);width:85%;height:85%;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.06) 0%,transparent 40%),repeating-radial-gradient(circle at center,#1a1a1a 0px,#1a1a1a 1px,#222 1px,#222 3px,#1a1a1a 3px),radial-gradient(circle at center,#000,#111);box-shadow:inset -2px -2px 8px rgba(0,0,0,.8),2px 4px 16px rgba(0,0,0,.4);transition:right .45s cubic-bezier(.22,1,.36,1);z-index:1;display:flex;align-items:center;justify-content:center}
 
 /* Vinyl label center */
@@ -326,8 +326,8 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 
 <header class="masthead">
   <div class="masthead-top">
-        <div class="site-title"><img src="logo.png" alt="SPIN CYCLE" class="site-logo"><span class="year-tag">phirst_tube Â· 2026 music log</span></div>
-    <div class="masthead-meta">Vol. 1 â Est. 2026<br>Denver, CO<br>Last updated: <span id="lu">Mar 16, 2026</span><br><span id="save-indicator" style="color:var(--cobalt);font-size:9px;letter-spacing:1px"></span></div>
+        <div class="site-title"><img src="logo.png" alt="SPIN CYCLE" class="site-logo"><span class="year-tag">phirst_tube &#183; 2026 music log</span></div>
+    <div class="masthead-meta">Vol. 1 &#8212; Est. 2026<br>Denver, CO<br>Last updated: <span id="lu">Mar 16, 2026</span><br><span id="save-indicator" style="color:var(--cobalt);font-size:9px;letter-spacing:1px"></span></div>
   </div>
   <div class="masthead-sub">
     <nav class="nav">
@@ -354,10 +354,10 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
       <div class="sec-head">
         <div class="sec-label">ALBUMS OF THE YEAR</div>
         <div class="sec-rule"></div>
-        <button class="suggest-btn" onclick="openSuggest('aoty')"><span class="sb-icon">â¦</span> SUGGEST</button>
+        <button class="suggest-btn" onclick="openSuggest('aoty')"><span class="sb-icon">&#10022;</span> SUGGEST</button>
       </div>
       <ul class="aoty-list" id="aoty-list"></ul>
-      <div class="orn">â¦ â¦ â¦</div>
+      <div class="orn">&#10022; &#10022; &#10022;</div>
       <div class="add-form">
         <div class="form-title">+ LOG AN ALBUM</div>
         <div class="frow">
@@ -383,10 +383,10 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
     </div>
 
     <div class="tab" id="tab-watchlist">
-      <div class="sec-head"><div class="sec-label">WATCHLIST</div><div class="sec-rule"></div><button class="suggest-btn" onclick="openSuggest('watchlist')"><span class="sb-icon">â¦</span> SUGGEST</button></div>
+      <div class="sec-head"><div class="sec-label">WATCHLIST</div><div class="sec-rule"></div><button class="suggest-btn" onclick="openSuggest('watchlist')"><span class="sb-icon">&#10022;</span> SUGGEST</button></div>
       <div class="pq">"If it's not on the list, it's not on the radar."</div>
       <div id="wl-list"></div>
-      <div class="orn">â¦ â¦ â¦</div>
+      <div class="orn">&#10022; &#10022; &#10022;</div>
       <div class="add-form">
         <div class="form-title">+ ADD TO WATCHLIST</div>
         <div class="frow">
@@ -410,16 +410,16 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
     </div>
 
     <div class="tab" id="tab-profile">
-      <div class="sec-head"><div class="sec-label">TOP ALBUMS</div><div class="sec-rule"></div><div class="sec-count">2020 â 2025</div></div>
+      <div class="sec-head"><div class="sec-label">TOP ALBUMS</div><div class="sec-rule"></div><div class="sec-count">2020 &#8211; 2025</div></div>
       <div id="taste-years"></div>
     </div>
 
     <div class="tab" id="tab-shows">
       <div class="sec-head"><div class="sec-label">SHOWS ATTENDED</div><div class="sec-rule"></div><div class="sec-count">2026</div></div>
       <div id="shows-attended"></div>
-      <div class="orn">â¦ â¦ â¦</div>
+      <div class="orn">&#10022; &#10022; &#10022;</div>
       <div style="margin-top:12px">
-        <div class="sec-head"><div class="sec-label">UPCOMING SHOWS</div><div class="sec-rule"></div><button class="suggest-btn" onclick="openSuggest('shows')"><span class="sb-icon">â¦</span> SUGGEST</button></div>
+        <div class="sec-head"><div class="sec-label">UPCOMING SHOWS</div><div class="sec-rule"></div><button class="suggest-btn" onclick="openSuggest('shows')"><span class="sb-icon">&#10022;</span> SUGGEST</button></div>
         <div id="shows-upcoming"></div>
       </div>
       <div class="add-form">
@@ -439,7 +439,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
     <div class="tab" id="tab-vinyl">
       <div class="vinyl-header">
         <div class="sec-head"><div class="sec-label">THE CRATES</div><div class="sec-rule"></div></div>
-        <div class="vinyl-subtitle" id="crate-subtitle">596 records Â· digging through phirst_tube's collection</div>
+        <div class="vinyl-subtitle" id="crate-subtitle">596 records &#183; digging through phirst_tube's collection</div>
       </div>
       <div class="vinyl-stats">
         <div class="vinyl-stat"><div class="vinyl-stat-n" id="vc-total">581</div><div class="vinyl-stat-l">Records</div></div>
@@ -463,7 +463,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
       <div class="jam-header">
         <div class="jam-rainbow-rule"></div>
         <div class="jam-title">THE TOUR LOG</div>
-        <div class="jam-shroom">ð ð ð</div>
+        <div class="jam-shroom">&#55356;&#57156; &#55356;&#57088; &#55356;&#57156;</div>
         <div class="jam-sub">A lifetime of live music &amp; improvisation</div>
         <div class="jam-stats-row">
           <div class="phish-block jam-stat">
@@ -496,10 +496,10 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
         <div class="jam-column phish-block">
           <div class="jam-band-header">
             <div class="jam-band-name">PHISH</div>
-            <div class="jam-band-pill">Est. 1983 Â· Burlington, VT</div>
+            <div class="jam-band-pill">Est. 1983 &#183; Burlington, VT</div>
           </div>
           <div class="jam-band-rule"></div>
-          <div class="jam-band-sub">Improvisational Rock Â· Psychedelic Â· Avant-garde</div>
+          <div class="jam-band-sub">Improvisational Rock &#183; Psychedelic &#183; Avant-garde</div>
           <div class="jam-scroll-box" id="phish-shows-list"></div>
         </div>
 
@@ -507,10 +507,10 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
         <div class="jam-column goose-block">
           <div class="jam-band-header">
             <div class="jam-band-name">GOOSE</div>
-            <div class="jam-band-pill">Est. 2014 Â· Norwalk, CT</div>
+            <div class="jam-band-pill">Est. 2014 &#183; Norwalk, CT</div>
           </div>
           <div class="jam-band-rule"></div>
-          <div class="jam-band-sub">Psychedelic Rock Â· Improvisation Â· Indie</div>
+          <div class="jam-band-sub">Psychedelic Rock &#183; Improvisation &#183; Indie</div>
           <div class="jam-scroll-box" id="goose-shows-list"></div>
         </div>
 
@@ -523,11 +523,11 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
   <div class="right-col">
     <div class="sec-head"><div class="sec-label" style="font-size:20px">NEXT UP</div><div class="sec-rule"></div></div>
     <div id="sb-watch"></div>
-    <div class="orn" style="margin:12px 0">â â¦ â</div>
+    <div class="orn" style="margin:12px 0">&#8212; &#10022; &#8212;</div>
     <div class="chat-box">
-      <div class="chat-head">ASK THE CRATE <span class="chat-status">â ONLINE</span></div>
+      <div class="chat-head">ASK THE CRATE <span class="chat-status">&#9679; ONLINE</span></div>
       <div class="chat-msgs" id="chat-msgs">
-        <div class="cmsg ai"><div class="mlabel">Crate Digger</div>What are you looking for? Ask me about new releases, what to spin next â filtered through your taste.</div>
+        <div class="cmsg ai"><div class="mlabel">Crate Digger</div>What are you looking for? Ask me about new releases, what to spin next &#8212; filtered through your taste.</div>
       </div>
       <div class="chat-row">
         <textarea class="chat-in" id="chat-in" placeholder="What should I spin next?" onkeydown="chatKey(event)"></textarea>
@@ -544,7 +544,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 function badge(t){const m={AOTY:'<span class="badge b-aoty">AOTY</span>',top:'<span class="badge b-top">Top</span>',solid:'<span class="badge b-solid">Solid</span>',meh:'<span class="badge b-meh">Meh</span>'};return m[t]||''}
 function inits(s){return s.split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase()}
 
-// ââ COVER ART AUTO-FETCH via MusicBrainz + Cover Art Archive ââ
+// &#9472;&#9472; COVER ART AUTO-FETCH via MusicBrainz + Cover Art Archive &#9472;&#9472;
 const coverCache = JSON.parse(localStorage.getItem('spincycle_covers')||'{}');
 const coverQueue = [];
 let coverFetching = false;
@@ -585,7 +585,7 @@ async function processCoverQueue(){
     
     let rgId = null;
     if(mbData['release-groups'] && mbData['release-groups'].length > 0){
-      // Try to find a good match â check artist name similarity
+      // Try to find a good match &#8212; check artist name similarity
       const artistLow = item.artist.toLowerCase();
       for(const rg of mbData['release-groups']){
         const rgArtist = (rg['artist-credit']||[]).map(a=>a.artist?.name||a.name||'').join(' ').toLowerCase();
@@ -603,7 +603,7 @@ async function processCoverQueue(){
     } else {
       // Step 2: Get cover from Cover Art Archive
       const covUrl = `https://coverartarchive.org/release-group/${rgId}/front-250`;
-      // Just try loading the image directly â CAA redirects to the image
+      // Just try loading the image directly &#8212; CAA redirects to the image
       const testImg = new Image();
       testImg.crossOrigin = 'anonymous';
       testImg.onload = () => {
@@ -618,7 +618,7 @@ async function processCoverQueue(){
       testImg.src = covUrl;
     }
   } catch(e){
-    // silently skip â cover art is a nice-to-have
+    // silently skip &#8212; cover art is a nice-to-have
     coverCache[item.key] = 'NONE';
     saveCoverCache();
   }
@@ -636,11 +636,11 @@ function applyImage(url, imgEl, covEl){
 }
 
 let albums = [
-  {id:1,rank:1,artist:"Ratboys",title:"Singinâ to an Empty Chair",cover:"",tier:"AOTY",note:"#1 so far. Ratboys at their peak â fuzzed indie rock meets Midwest heart.",date:"Feb 6"},
-  {id:13,rank:2,artist:"Bon Iver",title:"VOLUMES: ONE",cover:"",tier:"AOTY",note:"First non-studio album. Live archival series â 2019\u20132023 6-piece band recordings.",date:"Apr 3"},
+  {id:1,rank:1,artist:"Ratboys",title:"Singin&#8217; to an Empty Chair",cover:"",tier:"AOTY",note:"#1 so far. Ratboys at their peak &#8212; fuzzed indie rock meets Midwest heart.",date:"Feb 6"},
+  {id:13,rank:2,artist:"Bon Iver",title:"VOLUMES: ONE",cover:"",tier:"AOTY",note:"First non-studio album. Live archival series &#8212; 2019\u20132023 6-piece band recordings.",date:"Apr 3"},
   {id:2,rank:3,artist:"Twisted Teens",title:"Blame the Clown",cover:"",tier:"AOTY",note:"Country-fried steel-guitar punk. Ragged and alive.",date:"Feb 13"},
-  {id:11,rank:4,artist:"Cut Worms",title:"Transmitter",cover:"",tier:"AOTY",note:"Jeff Tweedy-produced at The Loft. Darker, richer â Big Star meets Elliott Smith via late Wilco warmth.",date:"Mar 13"},
-  {id:3,rank:5,artist:"Courtney Marie Andrews",title:"Valentine",cover:"",tier:"AOTY",note:"Tape-recorded in LA. Big Starâs Third meets Emmylou Harris.",date:"Jan 16"},
+  {id:11,rank:4,artist:"Cut Worms",title:"Transmitter",cover:"",tier:"AOTY",note:"Jeff Tweedy-produced at The Loft. Darker, richer &#8212; Big Star meets Elliott Smith via late Wilco warmth.",date:"Mar 13"},
+  {id:3,rank:5,artist:"Courtney Marie Andrews",title:"Valentine",cover:"",tier:"AOTY",note:"Tape-recorded in LA. Big Star&#8217;s Third meets Emmylou Harris.",date:"Jan 16"},
   {id:12,rank:6,artist:"Snail Mail",title:"Ricochet",cover:"",tier:"AOTY",note:"",date:"Mar 27"},
   {id:10,rank:7,artist:"Buck Meek",title:"The Mirror",cover:"",note:"Big Thief adjacent. Restrained and gorgeous.",tier:"top",date:"Feb 27"},
 ];
@@ -691,112 +691,112 @@ let watchlist = allWatchlist;
 
 const tasteYears=[
   {yr:"2025",top:[
-    "Cameron Winter â Heavy Metal / Geese â Getting Killed",
-    "Bon Iver â SABLE, fABLE",
-    "Wednesday â Bleeds",
-    "Dijon â Baby",
-    "Dean Johnson â I Hope We Can Still Be Friends"
+    "Cameron Winter &#8212; Heavy Metal / Geese &#8212; Getting Killed",
+    "Bon Iver &#8212; SABLE, fABLE",
+    "Wednesday &#8212; Bleeds",
+    "Dijon &#8212; Baby",
+    "Dean Johnson &#8212; I Hope We Can Still Be Friends"
   ],rest:[
-    "Goose â Chain Yer Dragon","Jason Isbell â Foxes in the Snow","Panda Bear â Sinister Grift","Saya Gray â SAYA","Sharp Pins â Radio DDR / Balloon, Balloon, Balloon","This Is Lorelei â Holo Boy","Tyler the Creator â Don\'t Tap the Glass"
+    "Goose &#8212; Chain Yer Dragon","Jason Isbell &#8212; Foxes in the Snow","Panda Bear &#8212; Sinister Grift","Saya Gray &#8212; SAYA","Sharp Pins &#8212; Radio DDR / Balloon, Balloon, Balloon","This Is Lorelei &#8212; Holo Boy","Tyler the Creator &#8212; Don\'t Tap the Glass"
   ]},
   {yr:"2024",top:[
-    "Bon Iver â SABLE,",
-    "Kendrick Lamar â gnx",
-    "Vampire Weekend â Only God Was Above Us",
-    "Jack White â No Name",
-    "Waxahatchee â Tigers Blood"
+    "Bon Iver &#8212; SABLE,",
+    "Kendrick Lamar &#8212; gnx",
+    "Vampire Weekend &#8212; Only God Was Above Us",
+    "Jack White &#8212; No Name",
+    "Waxahatchee &#8212; Tigers Blood"
   ],rest:[
-    "MJ Lenderman â Manning Fireworks","Father John Misty â Mahashmashana","Jessica Pratt â Here in the Pitch","Adrianne Lenker â Bright Future","Nala Sinephro â Endlessness","Sierra Ferrell â Trail of Flowers","Dehd â Poetry","Kacey Musgraves â Deeper Well","The Smile â Cutouts","Ducks Ltd â Harm\'s Way","Billy Strings â Highway Prayers","The Decemberists â As It Ever Was, So It Will Be Again","Jason Isbell â Weathervanes","Johnny Blue Skies â Passage Du Desir","Orebolo â The Chateau","Haley Heyndreckx â Seed of a Seed","Hurray for the Riff Raff â The Past Is Still Alive","Futurebirds â Easy Company"
+    "MJ Lenderman &#8212; Manning Fireworks","Father John Misty &#8212; Mahashmashana","Jessica Pratt &#8212; Here in the Pitch","Adrianne Lenker &#8212; Bright Future","Nala Sinephro &#8212; Endlessness","Sierra Ferrell &#8212; Trail of Flowers","Dehd &#8212; Poetry","Kacey Musgraves &#8212; Deeper Well","The Smile &#8212; Cutouts","Ducks Ltd &#8212; Harm\'s Way","Billy Strings &#8212; Highway Prayers","The Decemberists &#8212; As It Ever Was, So It Will Be Again","Jason Isbell &#8212; Weathervanes","Johnny Blue Skies &#8212; Passage Du Desir","Orebolo &#8212; The Chateau","Haley Heyndreckx &#8212; Seed of a Seed","Hurray for the Riff Raff &#8212; The Past Is Still Alive","Futurebirds &#8212; Easy Company"
   ]},
   {yr:"2023",top:[
-    "Sufjan Stevens â Javelin",
-    "Andy Shauf â Norm",
-    "Wednesday â Rat Saw God",
-    "Andre 3000 â New Blue Sun",
-    "MJ Lenderman â And the Wind (Live and Loose!)"
+    "Sufjan Stevens &#8212; Javelin",
+    "Andy Shauf &#8212; Norm",
+    "Wednesday &#8212; Rat Saw God",
+    "Andre 3000 &#8212; New Blue Sun",
+    "MJ Lenderman &#8212; And the Wind (Live and Loose!)"
   ],rest:[
-    "Cut Worms â Cut Worms","Dean Johnson â Nothing For Me, Please","Joanna Sternberg â I Got Me","Mac DeMarco â Five Easy Hot Dogs","Slow Pulp â Yard"
+    "Cut Worms &#8212; Cut Worms","Dean Johnson &#8212; Nothing For Me, Please","Joanna Sternberg &#8212; I Got Me","Mac DeMarco &#8212; Five Easy Hot Dogs","Slow Pulp &#8212; Yard"
   ]},
   {yr:"2022",top:[
-    "Big Thief â Dragon New Warm Mountain I Believe in You",
-    "Alvvays â Blue Rev",
-    "Goose â Dripfield",
-    "The Beths â Expert in a Dying Field",
-    "Florist â Florist"
+    "Big Thief &#8212; Dragon New Warm Mountain I Believe in You",
+    "Alvvays &#8212; Blue Rev",
+    "Goose &#8212; Dripfield",
+    "The Beths &#8212; Expert in a Dying Field",
+    "Florist &#8212; Florist"
   ],rest:[
-    "Andrew Bird â Inside Problems","The Smile â A Light for Attracting Attention","Spoon â Lucifer on the Sofa","Kendrick Lamar â Mr. Morale & The Big Steppers","NilÃ¼fer Yanya â PAINLESS","Kevin Morby â This Is a Photograph","Wet Leg â Wet Leg","Orville Peck â Bronco","Dehd â Blue Skies","Orebolo â Volume I"
+    "Andrew Bird &#8212; Inside Problems","The Smile &#8212; A Light for Attracting Attention","Spoon &#8212; Lucifer on the Sofa","Kendrick Lamar &#8212; Mr. Morale & The Big Steppers","Nil&#252;fer Yanya &#8212; PAINLESS","Kevin Morby &#8212; This Is a Photograph","Wet Leg &#8212; Wet Leg","Orville Peck &#8212; Bronco","Dehd &#8212; Blue Skies","Orebolo &#8212; Volume I"
   ]},
   {yr:"2021",top:[
-    "Billy Strings â Renewal",
-    "Cory Hanson â Pale Horse Rider",
-    "War on Drugs â I Don\'t Live Here Anymore",
-    "Snail Mail â Valentine",
-    "Andy Shauf â Wilds"
+    "Billy Strings &#8212; Renewal",
+    "Cory Hanson &#8212; Pale Horse Rider",
+    "War on Drugs &#8212; I Don\'t Live Here Anymore",
+    "Snail Mail &#8212; Valentine",
+    "Andy Shauf &#8212; Wilds"
   ],rest:[
-    "Big Red Machine â How Long Do You Think It\'s Gonna Last?","Sierra Ferrell â Long Time Coming","Goose â Shenanigans Nite Club","Tex Crick â Live inâ¦New York City","Trace Mountains â House of Confusion","Floating Points & Pharoah Sanders â Promises","Tyler the Creator â Call Me If You Get Lost"
+    "Big Red Machine &#8212; How Long Do You Think It\'s Gonna Last?","Sierra Ferrell &#8212; Long Time Coming","Goose &#8212; Shenanigans Nite Club","Tex Crick &#8212; Live in&#8230;New York City","Trace Mountains &#8212; House of Confusion","Floating Points & Pharoah Sanders &#8212; Promises","Tyler the Creator &#8212; Call Me If You Get Lost"
   ]},
   {yr:"2020",top:[
-    "Fiona Apple â Fetch the Bolt Cutters",
-    "Adrianne Lenker â songs",
-    "Bob Dylan â Rough and Rowdy Ways",
-    "Fleet Foxes â Shore",
-    "Andy Shauf â The Neon Skyline"
+    "Fiona Apple &#8212; Fetch the Bolt Cutters",
+    "Adrianne Lenker &#8212; songs",
+    "Bob Dylan &#8212; Rough and Rowdy Ways",
+    "Fleet Foxes &#8212; Shore",
+    "Andy Shauf &#8212; The Neon Skyline"
   ],rest:[
-    "Perfume Genius â Set My Heart on Fire Immediately","The Strokes â The New Abnormal","Waxahatchee â Saint Cloud","Run the Jewels â RTJ4","Trace Mountains â A Partner to Lean On","HAIM â Women in Music Pt. III","Dehd â Flower of Devotion","Tame Impala â The Slow Rush"
+    "Perfume Genius &#8212; Set My Heart on Fire Immediately","The Strokes &#8212; The New Abnormal","Waxahatchee &#8212; Saint Cloud","Run the Jewels &#8212; RTJ4","Trace Mountains &#8212; A Partner to Lean On","HAIM &#8212; Women in Music Pt. III","Dehd &#8212; Flower of Devotion","Tame Impala &#8212; The Slow Rush"
   ]},
   {yr:"2019",top:[
-    "Big Thief â Two Hands",
-    "Big Thief â U.F.O.F.",
-    "Billy Strings â Home",
-    "Bon Iver â i,i",
-    "Weyes Blood â Titanic Rising"
+    "Big Thief &#8212; Two Hands",
+    "Big Thief &#8212; U.F.O.F.",
+    "Billy Strings &#8212; Home",
+    "Bon Iver &#8212; i,i",
+    "Weyes Blood &#8212; Titanic Rising"
   ],rest:[
-    "Vampire Weekend â Father of the Bride","Orville Peck â Pony","Jessica Pratt â Quiet Signs","Florist â Emily Alone","Tyler the Creator â IGOR","Mac DeMarco â Here Comes the Cowboy","Deerhunter â Why Hasn\'t Everything Already Disappeared?","NilÃ¼fer Yanya â Miss Universe","Panda Bear â Buoys","Thom Yorke â ANIMA","Twin Peaks â Lookout Low","Andrew Bird â My Finest Work Yet","Clairo â Immunity","Wand â Laughing Matter"
+    "Vampire Weekend &#8212; Father of the Bride","Orville Peck &#8212; Pony","Jessica Pratt &#8212; Quiet Signs","Florist &#8212; Emily Alone","Tyler the Creator &#8212; IGOR","Mac DeMarco &#8212; Here Comes the Cowboy","Deerhunter &#8212; Why Hasn\'t Everything Already Disappeared?","Nil&#252;fer Yanya &#8212; Miss Universe","Panda Bear &#8212; Buoys","Thom Yorke &#8212; ANIMA","Twin Peaks &#8212; Lookout Low","Andrew Bird &#8212; My Finest Work Yet","Clairo &#8212; Immunity","Wand &#8212; Laughing Matter"
   ]},
   {yr:"2018",top:[
-    "Snail Mail â Lush",
-    "boygenius â boygenius",
-    "Lucy Dacus â Historian",
-    "Car Seat Headrest â Twin Fantasy",
-    "Parquet Courts â Wide Awake!"
+    "Snail Mail &#8212; Lush",
+    "boygenius &#8212; boygenius",
+    "Lucy Dacus &#8212; Historian",
+    "Car Seat Headrest &#8212; Twin Fantasy",
+    "Parquet Courts &#8212; Wide Awake!"
   ],rest:[
-    "Father John Misty â God\'s Favorite Customer","Khruangbin â Con Todo El Mundo","Cut Worms â Hollow Ground","Beach House â 7","Soccer Mommy â Clean","Courtney Barnett â Tell Me How You Really Feel","Hop Along â Bark Your Head Off, Dog","Waxahatchee â Great Thunder","The Decemberists â I\'ll Be Your Girl","David Byrne â American Utopia","Pusha T â Daytona"
+    "Father John Misty &#8212; God\'s Favorite Customer","Khruangbin &#8212; Con Todo El Mundo","Cut Worms &#8212; Hollow Ground","Beach House &#8212; 7","Soccer Mommy &#8212; Clean","Courtney Barnett &#8212; Tell Me How You Really Feel","Hop Along &#8212; Bark Your Head Off, Dog","Waxahatchee &#8212; Great Thunder","The Decemberists &#8212; I\'ll Be Your Girl","David Byrne &#8212; American Utopia","Pusha T &#8212; Daytona"
   ]},
   {yr:"2017",top:[
-    "Kendrick Lamar â DAMN.",
-    "Big Thief â Capacity",
-    "Fleet Foxes â Crack-Up",
-    "The War on Drugs â A Deeper Understanding",
-    "The National â Sleep Well Beast"
+    "Kendrick Lamar &#8212; DAMN.",
+    "Big Thief &#8212; Capacity",
+    "Fleet Foxes &#8212; Crack-Up",
+    "The War on Drugs &#8212; A Deeper Understanding",
+    "The National &#8212; Sleep Well Beast"
   ],rest:[
-    "Perfume Genius â No Shape","Thundercat â Drunk","Tyler the Creator â Flower Boy","Sampha â Process","Moses Sumney â Aromanticism","Spoon â Hot Thoughts","Mac DeMarco â This Old Dog","Kevin Morby â City Music","St. Vincent â MASSEDUCTION","Run the Jewels â RTJ3","Vince Staples â Big Fish Theory"
+    "Perfume Genius &#8212; No Shape","Thundercat &#8212; Drunk","Tyler the Creator &#8212; Flower Boy","Sampha &#8212; Process","Moses Sumney &#8212; Aromanticism","Spoon &#8212; Hot Thoughts","Mac DeMarco &#8212; This Old Dog","Kevin Morby &#8212; City Music","St. Vincent &#8212; MASSEDUCTION","Run the Jewels &#8212; RTJ3","Vince Staples &#8212; Big Fish Theory"
   ]},
   {yr:"2016",top:[
-    "Bon Iver â 22, A Million",
-    "Big Thief â Masterpiece",
-    "David Bowie â Blackstar",
-    "Sturgill Simpson â A Sailor\'s Guide to Earth",
-    "Kevin Morby â Singing Saw"
+    "Bon Iver &#8212; 22, A Million",
+    "Big Thief &#8212; Masterpiece",
+    "David Bowie &#8212; Blackstar",
+    "Sturgill Simpson &#8212; A Sailor\'s Guide to Earth",
+    "Kevin Morby &#8212; Singing Saw"
   ],rest:[
-    "Anderson .Paak â Malibu","Kendrick Lamar â untitled unmastered.","Pinegrove â Cardinal","Whitney â Light Upon the Lake","Parquet Courts â Human Performance","Andrew Bird â Are You Serious","Lucy Dacus â No Burden","Twin Peaks â Down in Heaven","Vince Staples â Prima Donna","Fruit Bats â Absolute Loser","Rayland Baxter â Imaginary Man"
+    "Anderson .Paak &#8212; Malibu","Kendrick Lamar &#8212; untitled unmastered.","Pinegrove &#8212; Cardinal","Whitney &#8212; Light Upon the Lake","Parquet Courts &#8212; Human Performance","Andrew Bird &#8212; Are You Serious","Lucy Dacus &#8212; No Burden","Twin Peaks &#8212; Down in Heaven","Vince Staples &#8212; Prima Donna","Fruit Bats &#8212; Absolute Loser","Rayland Baxter &#8212; Imaginary Man"
   ]},
   {yr:"2015",top:[
-    "Kendrick Lamar â To Pimp a Butterfly",
-    "Alabama Shakes â Sound & Color",
-    "Courtney Barnett â Sometimes I Sit and Think, and Sometimes I Just Sit",
-    "Father John Misty â I Love You, Honeybear",
-    "Sufjan Stevens â Carrie & Lowell"
+    "Kendrick Lamar &#8212; To Pimp a Butterfly",
+    "Alabama Shakes &#8212; Sound & Color",
+    "Courtney Barnett &#8212; Sometimes I Sit and Think, and Sometimes I Just Sit",
+    "Father John Misty &#8212; I Love You, Honeybear",
+    "Sufjan Stevens &#8212; Carrie & Lowell"
   ],rest:[
-    "Tame Impala â Currents","Beach House â Depression Cherry","Jason Isbell â Something More Than Free","Natalie Prass â Natalie Prass","Leon Bridges â Coming Home","Mac DeMarco â Another One","Kurt Vile â b\'lieve i\'m goin down...","The Decemberists â What a Terrible World, What a Beautiful World","Wilco â Star Wars","Jamie xx â In Colour","Kamasi Washington â The Epic","Tobias Jesso Jr. â Goon","Panda Bear â Panda Bear Meets the Grim Reaper"
+    "Tame Impala &#8212; Currents","Beach House &#8212; Depression Cherry","Jason Isbell &#8212; Something More Than Free","Natalie Prass &#8212; Natalie Prass","Leon Bridges &#8212; Coming Home","Mac DeMarco &#8212; Another One","Kurt Vile &#8212; b\'lieve i\'m goin down...","The Decemberists &#8212; What a Terrible World, What a Beautiful World","Wilco &#8212; Star Wars","Jamie xx &#8212; In Colour","Kamasi Washington &#8212; The Epic","Tobias Jesso Jr. &#8212; Goon","Panda Bear &#8212; Panda Bear Meets the Grim Reaper"
   ]},
   {yr:"2014",top:[
-    "Mac DeMarco â Salad Days",
-    "Run The Jewels â Run the Jewels 2",
-    "Spoon â They Want My Soul",
-    "Sturgill Simpson â Metamodern Sounds in Country Music",
-    "The War On Drugs â Lost In The Dream"
+    "Mac DeMarco &#8212; Salad Days",
+    "Run The Jewels &#8212; Run the Jewels 2",
+    "Spoon &#8212; They Want My Soul",
+    "Sturgill Simpson &#8212; Metamodern Sounds in Country Music",
+    "The War On Drugs &#8212; Lost In The Dream"
   ],rest:[
-    "Angel Olsen â Burn Your Fire For No Witness","Beck â Morning Phase","St. Vincent â St. Vincent","Sun Kil Moon â Benji","Real Estate â Atlas","First Aid Kit â Stay Gold","Jack White â Lazaretto","Parquet Courts â Sunbathing Animal","Tweedy â Sukierae","Perfume Genius â Too Bright","FKA twigs â LP1","Ex Hex â Rips","Tycho â Awake","Vince Staples â Hell Can Wait","Parquet Courts â Content Nausea","TV On The Radio â Seeds","Flying Lotus â You\'re Dead!","Moses Sumney â Mid-City Island"
+    "Angel Olsen &#8212; Burn Your Fire For No Witness","Beck &#8212; Morning Phase","St. Vincent &#8212; St. Vincent","Sun Kil Moon &#8212; Benji","Real Estate &#8212; Atlas","First Aid Kit &#8212; Stay Gold","Jack White &#8212; Lazaretto","Parquet Courts &#8212; Sunbathing Animal","Tweedy &#8212; Sukierae","Perfume Genius &#8212; Too Bright","FKA twigs &#8212; LP1","Ex Hex &#8212; Rips","Tycho &#8212; Awake","Vince Staples &#8212; Hell Can Wait","Parquet Courts &#8212; Content Nausea","TV On The Radio &#8212; Seeds","Flying Lotus &#8212; You\'re Dead!","Moses Sumney &#8212; Mid-City Island"
   ]},
 ];
 
@@ -805,7 +805,7 @@ const vinylCollection = [
 {artist:"A Tribe Called Quest",title:"People's Instinctive Travels And The Paths Of Rhythm",year:""},
 {artist:"A Tribe Called Quest",title:"The Low End Theory",year:""},
 {artist:"A Tribe Called Quest",title:"The Low End Theory",year:""},
-{artist:"A Tribe Called Quest",title:"We Got It From Hereâ¦. Thank You 4 Your Service",year:""},
+{artist:"A Tribe Called Quest",title:"We Got It From Here&#8230;. Thank You 4 Your Service",year:""},
 {artist:"A.A. Bondy",title:"American Hearts",year:""},
 {artist:"A.A. Bondy",title:"Believers",year:""},
 {artist:"A.A. Bondy",title:"When The Devil's Loose",year:""},
@@ -895,7 +895,7 @@ const vinylCollection = [
 {artist:"Bob Dylan",title:"The Freewheelin' Bob Dylan",year:""},
 {artist:"Bob Dylan",title:"The Freewheelin' Bob Dylan",year:""},
 {artist:"Bob Dylan",title:"The Times They Are A-Changin'",year:""},
-{artist:"Bob Dylan",title:"Travelin' Thru (The Bootleg Series Vol. 15 1967â1969)",year:""},
+{artist:"Bob Dylan",title:"Travelin' Thru (The Bootleg Series Vol. 15 1967&#8211;1969)",year:""},
 {artist:"Bob Seger And The Silver Bullet Band",title:"Night Moves",year:""},
 {artist:"The Bob Seger System",title:"Ramblin' Gamblin' Man",year:""},
 {artist:"Bobby Long",title:"A Winter Tale",year:""},
@@ -981,7 +981,7 @@ const vinylCollection = [
 {artist:"Emily Hines",title:"These Days",year:""},
 {artist:"Eric Clapton",title:"Slowhand",year:""},
 {artist:"Ex Hex",title:"Rips",year:""},
-{artist:"Father John Misty",title:"ChloÃ« And The Next 20th Century",year:""},
+{artist:"Father John Misty",title:"Chlo&#235; And The Next 20th Century",year:""},
 {artist:"Father John Misty",title:"God's Favorite Customer",year:""},
 {artist:"Father John Misty",title:"I Love You, Honeybear",year:""},
 {artist:"Father John Misty",title:"Mahashmashana",year:""},
@@ -1154,7 +1154,7 @@ const vinylCollection = [
 {artist:"Monsters Of Folk",title:"Monsters Of Folk",year:""},
 {artist:"My Morning Jacket",title:"Acoustic Citsuoca",year:""},
 {artist:"My Morning Jacket",title:"At Dawn",year:""},
-{artist:"My Morning Jacket",title:"CelebraciÃ³n De La Ciudad Natal",year:""},
+{artist:"My Morning Jacket",title:"Celebraci&#243;n De La Ciudad Natal",year:""},
 {artist:"My Morning Jacket",title:"Circuital",year:""},
 {artist:"My Morning Jacket",title:"Evil Urges",year:""},
 {artist:"My Morning Jacket",title:"Evil Urges",year:""},
@@ -1168,13 +1168,13 @@ const vinylCollection = [
 {artist:"Nelly",title:"Country Grammar",year:""},
 {artist:"Neutral Milk Hotel",title:"In The Aeroplane Over The Sea",year:""},
 {artist:"New Riders Of The Purple Sage",title:"New Riders Of The Purple Sage",year:""},
-{artist:"NilÃ¼fer Yanya",title:"Miss Universe",year:""},
-{artist:"NilÃ¼fer Yanya",title:"Painless",year:""},
+{artist:"Nil&#252;fer Yanya",title:"Miss Universe",year:""},
+{artist:"Nil&#252;fer Yanya",title:"Painless",year:""},
 {artist:"Nina Simone",title:"Nina Simone Sings The Blues",year:""},
 {artist:"Nirvana",title:"MTV Unplugged In New York",year:""},
 {artist:"No Artist",title:"Chilling, Thrilling Sounds Of The Haunted House",year:""},
 {artist:"The Notorious B.I.G.",title:"Ready To Die",year:""},
-{artist:"Of Monsters And Men",title:"ÃtÃ­ SjÃ³ Og InnÃ­ SkÃ³g",year:""},
+{artist:"Of Monsters And Men",title:"&#218;t&#237; Sj&#243; Og Inn&#237; Sk&#243;g",year:""},
 {artist:"Orebolo",title:"The Chateau",year:""},
 {artist:"Orebolo",title:"Volume I",year:""},
 {artist:"Orville Peck",title:"Bronco",year:""},
@@ -1452,7 +1452,7 @@ function renderVinyl(){
   });
   updateVinylStats();
   const sub = document.getElementById('crate-subtitle');
-  if(sub) sub.textContent = vinylData.length + ' records Â· digging through phirst_tube\'s collection';
+  if(sub) sub.textContent = vinylData.length + ' records &#183; digging through phirst_tube\'s collection';
 }
 
 function escapeHtml(text){
@@ -1543,7 +1543,7 @@ function renderAOTY(){
     inf.innerHTML=`<div class="alb-title">${alb.title}</div><div class="alb-artist">${alb.artist}</div>${alb.note?`<div class="alb-note">${alb.note}</div>`:''}`;
     li.appendChild(inf);
     const rt=document.createElement('div'); rt.className='aoty-right';
-    rt.innerHTML=`${badge(alb.tier)}<div style="font-size:9px;color:var(--dim);margin-top:4px">${alb.date||''}</div><button onclick="removeAlbum(${alb.id})" style="background:none;border:none;cursor:pointer;font-size:9px;color:var(--dim);margin-top:4px;display:block">â remove</button>`;
+    rt.innerHTML=`${badge(alb.tier)}<div style="font-size:9px;color:var(--dim);margin-top:4px">${alb.date||''}</div><button onclick="removeAlbum(${alb.id})" style="background:none;border:none;cursor:pointer;font-size:9px;color:var(--dim);margin-top:4px;display:block">&#10005; remove</button>`;
     li.appendChild(rt);
     li.addEventListener('dragstart',e=>{e.dataTransfer.setData('id',alb.id);li.classList.add('dragging')});
     li.addEventListener('dragend',()=>li.classList.remove('dragging'));
@@ -1639,7 +1639,7 @@ function updateStats(){
   document.getElementById('s-watching').textContent=watchlist.length;
 }
 
-// ââ auth âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// &#9472;&#9472; auth &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 const ADMIN_PASS='Robertdylan1!!';
 let authed=false;
 function requireAuth(action){
@@ -1695,7 +1695,7 @@ function showTab(name,btn){
   if(btn)btn.classList.add('active');
 }
 
-const SYSTEM=`You are a music recommendation assistant for phirst_tube. 2026 AOTY ranking: 1. Ratboys - Singin to an Empty Chair, 2. Twisted Teens - Blame the Clown (possibly tied #1), 3. Courtney Marie Andrews - Valentine. Also logged: Buck Meek - The Mirror (top), Iron & Wine - Hen's Teeth (solid), Victoryland - My Heart Is A Room With No Cameras In It (solid). Core artists: Big Thief, Bon Iver, Bob Dylan, Goose, Kendrick, Waxahatchee, Andy Shauf, Wednesday/MJ Lenderman. Works: bold headphone albums, great songwriting of small moments, emotional vocals, weirdness paired with beauty. Doesn't work: monotone delivery, creepy aesthetics, too polished. High priority watchlist: Snail Mail Ricochet Mar 27, This Is Lorelei, Wednesday, Geese. Be concise and opinionated â music friend, not Wikipedia.`;
+const SYSTEM=`You are a music recommendation assistant for phirst_tube. 2026 AOTY ranking: 1. Ratboys - Singin to an Empty Chair, 2. Twisted Teens - Blame the Clown (possibly tied #1), 3. Courtney Marie Andrews - Valentine. Also logged: Buck Meek - The Mirror (top), Iron & Wine - Hen's Teeth (solid), Victoryland - My Heart Is A Room With No Cameras In It (solid). Core artists: Big Thief, Bon Iver, Bob Dylan, Goose, Kendrick, Waxahatchee, Andy Shauf, Wednesday/MJ Lenderman. Works: bold headphone albums, great songwriting of small moments, emotional vocals, weirdness paired with beauty. Doesn't work: monotone delivery, creepy aesthetics, too polished. High priority watchlist: Snail Mail Ricochet Mar 27, This Is Lorelei, Wednesday, Geese. Be concise and opinionated &#8212; music friend, not Wikipedia.`;
 
 let chatHistory=[];
 async function sendChat(){
@@ -1734,7 +1734,7 @@ let shows = [
   {id:8,artist:"Mac DeMarco",date:"May 3",venue:"Mission Ballroom, Denver CO",note:"",tickets:true},
   {id:24,artist:"Trey Anastasio",date:"Jun 3",venue:"Gerald R. Ford Amphitheater, Vail CO",note:"",tickets:false},
   {id:25,artist:"Rostam",date:"Jun 11",venue:"Gothic Theatre, Englewood CO",note:"",tickets:false},
-  {id:13,artist:"Goose â Viva El Gonzo",date:"May 7â9",venue:"San JosÃ© del Cabo, Mexico",note:"Festival â Jim James, Pigeons Playing Ping Pong, Cory Wong + more",tickets:true},
+  {id:13,artist:"Goose &#8212; Viva El Gonzo",date:"May 7&#8211;9",venue:"San Jos&#233; del Cabo, Mexico",note:"Festival &#8212; Jim James, Pigeons Playing Ping Pong, Cory Wong + more",tickets:true},
   {id:9,artist:"Snail Mail",date:"May 13",venue:"Ogden Theatre, Denver CO",note:"",tickets:false},
   {id:10,artist:"Sharp Pins",date:"May 13",venue:"Ogden Theatre, Denver CO",note:"",tickets:false},
   {id:11,artist:"Kevin Morby",date:"May 14",venue:"Ogden Theatre, Denver CO",note:"",tickets:false},
@@ -1784,7 +1784,7 @@ function renderShows(){
       </div>
       <div style="text-align:right;flex-shrink:0">
         <div style="font-family:var(--display);font-size:20px;letter-spacing:1px;color:${dateColor}">${s.date}</div>
-        <button onclick="removeShow(${s.id})" style="background:none;border:none;cursor:pointer;font-size:9px;color:var(--dim);margin-top:4px;display:block;margin-left:auto">â remove</button>
+        <button onclick="removeShow(${s.id})" style="background:none;border:none;cursor:pointer;font-size:9px;color:var(--dim);margin-top:4px;display:block;margin-left:auto">&#10005; remove</button>
       </div>
     </div>`;
   }
@@ -1817,7 +1817,7 @@ function removeShow(id){
   renderShows();save();
 }
 
-// ââ PERSISTENCE âââââââââââââââââââââââââââââââââââââââââââââââââ
+// &#9472;&#9472; PERSISTENCE &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 const DATA_VERSION = 24; // bump this when hardcoded data changes
 const LS_VERSION   = 'spincycle_version';
 const LS_ALBUMS   = 'spincycle_albums';
@@ -1840,7 +1840,7 @@ function save() {
     localStorage.setItem(LS_PHISH,     JSON.stringify(phishShows));
     localStorage.setItem(LS_GOOSE,     JSON.stringify(gooseShows));
     const ind = document.getElementById('save-indicator');
-    if (ind) { ind.textContent = 'â saved'; setTimeout(() => ind.textContent = '', 2000); }
+    if (ind) { ind.textContent = '&#10003; saved'; setTimeout(() => ind.textContent = '', 2000); }
   } catch(e) { /* silent */ }
 }
 
@@ -1866,7 +1866,7 @@ function loadSaved() {
     const s = localStorage.getItem(LS_SHOWS);
     if (s) {
       const savedShows = JSON.parse(s);
-      // If saved data has Hudson Freeman (id:2) or is missing shows, it's stale â skip it
+      // If saved data has Hudson Freeman (id:2) or is missing shows, it's stale &#8212; skip it
       const hasHudson = savedShows.some(x => x.id === 2 && x.artist && x.artist.includes('Hudson'));
       const hasAllCurrent = shows.every(h => savedShows.some(sv => sv.id === h.id));
       if (!hasHudson && hasAllCurrent) {
@@ -1885,7 +1885,7 @@ save();
 
 renderAOTY();renderWatchlist();renderSidebar();renderTaste();renderShows();renderVinyl();
 
-// ââ API KEY MANAGEMENT ââââââââââââââââââââââââââââââââââââââââââ
+// &#9472;&#9472; API KEY MANAGEMENT &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function getApiKey() {
   return localStorage.getItem('spincycle_apikey') || null;
 }
@@ -1894,7 +1894,7 @@ function showApiKeyInput(container, callback) {
   container.innerHTML = `
     <div style="max-width:400px">
       <div style="font-family:var(--display);font-size:18px;letter-spacing:3px;color:var(--ink-bright);margin-bottom:12px">API KEY REQUIRED</div>
-      <div style="font-family:var(--mono);font-size:12px;color:var(--dim);margin-bottom:16px;line-height:1.6">Enter your Anthropic API key to enable suggestions and chat. Stored locally in your browser â never in the source code.</div>
+      <div style="font-family:var(--mono);font-size:12px;color:var(--dim);margin-bottom:16px;line-height:1.6">Enter your Anthropic API key to enable suggestions and chat. Stored locally in your browser &#8212; never in the source code.</div>
       <div style="display:flex;gap:8px">
         <input id="api-key-input" type="password" placeholder="sk-ant-..." style="flex:1;background:var(--bg);border:1px solid var(--border);padding:10px 14px;font-family:var(--mono);font-size:12px;color:var(--ink);border-radius:6px">
         <button onclick="saveApiKey()" style="background:var(--cobalt);color:#fff;border:none;padding:10px 20px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;border-radius:6px;cursor:pointer">SAVE</button>
@@ -1912,15 +1912,15 @@ function saveApiKey() {
   }
 }
 
-// ââ SUGGEST ENGINE ââââââââââââââââââââââââââââââââââââââââââââââ
+// &#9472;&#9472; SUGGEST ENGINE &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function closeSuggest() {
   document.getElementById('suggest-drawer').classList.remove('open');
 }
 
 function buildContext() {
   const ranked = [...albums].sort((a,b) => a.rank - b.rank);
-  const aotyList = ranked.map((a,i) => `${i+1}. ${a.artist} â ${a.title}`).join('\n');
-  const wlList = allWatchlist.map(w => `${w.artist} â ${w.album}`).join('\n');
+  const aotyList = ranked.map((a,i) => `${i+1}. ${a.artist} &#8212; ${a.title}`).join('\n');
+  const wlList = allWatchlist.map(w => `${w.artist} &#8212; ${w.album}`).join('\n');
   const showList = shows.map(s => `${s.artist} | ${s.date} | ${s.venue}`).join('\n');
   // Build exclusion list: all artists already on AOTY or watchlist
   const excludeArtists = [...new Set([
@@ -1957,7 +1957,7 @@ async function openSuggest(mode) {
 - ONLY recommend albums/artists you can verify exist via web search. Never fabricate.
 - Never recommend anything already on the user's AOTY list, watchlist, or shows list.
 - No preamble, no "I'll search for..." text. Jump straight to results.
-- Format each rec as: **Artist â Album Title** (Release Date)\\nOne to two sentences on why it fits. That's it.
+- Format each rec as: **Artist &#8212; Album Title** (Release Date)\\nOne to two sentences on why it fits. That's it.
 - Number each recommendation 1-5.`;
 
   const prompts = {
@@ -1973,9 +1973,9 @@ ${tasteRestSample}
 Their 2026 AOTY so far:
 ${aotyList}
 
-Find albums that match this taste â indie rock, folk, Americana, singer-songwriter, emotional vocals, great songwriting, weirdness + beauty. No over-polished pop. Only verified 2026 releases.`,
+Find albums that match this taste &#8212; indie rock, folk, Americana, singer-songwriter, emotional vocals, great songwriting, weirdness + beauty. No over-polished pop. Only verified 2026 releases.`,
 
-    watchlist: `Search the web for confirmed upcoming album releases in the next 3 months (AprilâJuly 2026). Search for "upcoming indie albums 2026," "new album announcements 2026," "spring summer 2026 album releases" and similar queries. Cross-reference what you find against this listener's taste.
+    watchlist: `Search the web for confirmed upcoming album releases in the next 3 months (April&#8211;July 2026). Search for "upcoming indie albums 2026," "new album announcements 2026," "spring summer 2026 album releases" and similar queries. Cross-reference what you find against this listener's taste.
 
 EXCLUDE THESE ARTISTS (already on their AOTY or watchlist): ${excludeArtists}
 
@@ -2014,7 +2014,7 @@ Find 5 confirmed Colorado shows. Only verified announcements with real dates and
     let messages = [{ role: 'user', content: prompts[mode] }];
     let finalText = '';
 
-    // Agentic loop â handles tool_use turns until we get a final text response
+    // Agentic loop &#8212; handles tool_use turns until we get a final text response
     for (let i = 0; i < 8; i++) {
       const res = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
@@ -2048,7 +2048,7 @@ Find 5 confirmed Colorado shows. Only verified announcements with real dates and
       .replace(/^## (.+)$/gm, '<strong>$1</strong>')
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/^[\-\*â¢] (.+)$/gm, '<li>$1</li>')
+      .replace(/^[\-\*&#8226;] (.+)$/gm, '<li>$1</li>')
       .replace(/(<li>.*<\/li>\n?)+/g, s => `<ul>${s}</ul>`)
       .replace(/\n\n+/g, '</p><p>');
     output.innerHTML = `<p>${html}</p>`;
@@ -2057,149 +2057,149 @@ Find 5 confirmed Colorado shows. Only verified announcements with real dates and
   }
 }
 
-// ââ TOUR LOG DATA ââ
+// &#9472;&#9472; TOUR LOG DATA &#9472;&#9472;
 const phishShows = [
-  {date:"Jul 05, 2025",venue:"Folsom Field",note:"Boulder, CO Â· â 4.18"},
-  {date:"Jul 04, 2025",venue:"Folsom Field",note:"Boulder, CO Â· â 4.48"},
-  {date:"Jul 03, 2025",venue:"Folsom Field",note:"Boulder, CO Â· â 4.23"},
-  {date:"Aug 30, 2024",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.50"},
-  {date:"Aug 29, 2024",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.98"},
-  {date:"Aug 18, 2024",venue:"The Woodlands",note:"Dover, DE Â· â 3.40"},
-  {date:"Aug 17, 2024",venue:"The Woodlands",note:"Dover, DE Â· â 4.59"},
-  {date:"Aug 16, 2024",venue:"The Woodlands",note:"Dover, DE Â· â 4.55"},
-  {date:"Aug 15, 2024",venue:"The Woodlands",note:"Dover, DE Â· â 4.32"},
-  {date:"Apr 19, 2024",venue:"Sphere",note:"Las Vegas, NV Â· â 4.50"},
-  {date:"Apr 18, 2024",venue:"Sphere",note:"Las Vegas, NV Â· â 4.34"},
-  {date:"Sep 03, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.06"},
-  {date:"Sep 02, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.37"},
-  {date:"Sep 01, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.34"},
-  {date:"Aug 31, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.83"},
-  {date:"Jul 16, 2023",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA Â· â 4.24"},
-  {date:"Jul 15, 2023",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA Â· â 4.35"},
-  {date:"Jul 14, 2023",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA Â· â 4.21"},
-  {date:"Sep 04, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.05"},
-  {date:"Sep 03, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.29"},
-  {date:"Sep 02, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.24"},
-  {date:"Sep 01, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.78"},
-  {date:"Jul 20, 2022",venue:"TD Pavilion at the Mann",note:"Philadelphia, PA Â· â 3.74"},
-  {date:"Jul 19, 2022",venue:"TD Pavilion at the Mann",note:"Philadelphia, PA Â· â 4.14"},
-  {date:"Apr 23, 2022",venue:"Madison Square Garden",note:"New York, NY Â· â 4.37"},
-  {date:"Apr 22, 2022",venue:"Madison Square Garden",note:"New York, NY Â· â 4.53"},
-  {date:"Apr 21, 2022",venue:"Madison Square Garden",note:"New York, NY Â· â 4.49"},
-  {date:"Apr 20, 2022",venue:"Madison Square Garden",note:"New York, NY Â· â 3.59"},
-  {date:"Oct 31, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.23"},
-  {date:"Oct 30, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.31"},
-  {date:"Oct 29, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.44"},
-  {date:"Oct 28, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.55"},
-  {date:"Sep 05, 2021",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.34"},
-  {date:"Sep 04, 2021",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.74"},
-  {date:"Sep 03, 2021",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.86"},
-  {date:"Aug 29, 2021",venue:"Gorge Amphitheatre",note:"George, WA Â· â 3.59"},
-  {date:"Aug 28, 2021",venue:"Gorge Amphitheatre",note:"George, WA Â· â 3.87"},
-  {date:"Aug 27, 2021",venue:"Gorge Amphitheatre",note:"George, WA Â· â 3.59"},
-  {date:"Aug 01, 2021",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA Â· â 4.43"},
-  {date:"Jul 31, 2021",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA Â· â 4.13"},
-  {date:"Jul 30, 2021",venue:"Oak Mountain Amphitheatre",note:"Pelham, AL Â· â 4.05"},
-  {date:"Dec 08, 2019",venue:"North Charleston Coliseum",note:"North Charleston, SC Â· â 3.02"},
-  {date:"Dec 07, 2019",venue:"North Charleston Coliseum",note:"North Charleston, SC Â· â 4.26"},
-  {date:"Dec 06, 2019",venue:"North Charleston Coliseum",note:"North Charleston, SC Â· â 4.22"},
-  {date:"Sep 01, 2019",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.06"},
-  {date:"Aug 31, 2019",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.11"},
-  {date:"Aug 30, 2019",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.73"},
-  {date:"Jul 14, 2019",venue:"Alpine Valley Music Theatre",note:"East Troy, WI Â· â 4.62"},
-  {date:"Jul 13, 2019",venue:"Alpine Valley Music Theatre",note:"East Troy, WI Â· â 3.78"},
-  {date:"Jul 12, 2019",venue:"Alpine Valley Music Theatre",note:"East Troy, WI Â· â 3.71"},
-  {date:"Dec 31, 2018",venue:"Madison Square Garden",note:"New York, NY Â· â 4.23"},
-  {date:"Dec 30, 2018",venue:"Madison Square Garden",note:"New York, NY Â· â 4.58"},
-  {date:"Nov 03, 2018",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.41"},
-  {date:"Nov 02, 2018",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.48"},
-  {date:"Oct 21, 2018",venue:"Hampton Coliseum",note:"Hampton, VA Â· â 4.19"},
-  {date:"Oct 20, 2018",venue:"Hampton Coliseum",note:"Hampton, VA Â· â 4.17"},
-  {date:"Oct 19, 2018",venue:"Hampton Coliseum",note:"Hampton, VA Â· â 4.50"},
-  {date:"Sep 02, 2018",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.21"},
-  {date:"Sep 01, 2018",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.01"},
-  {date:"Aug 31, 2018",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.49"},
-  {date:"Jul 28, 2018",venue:"The Forum",note:"Inglewood, CA Â· â 3.74"},
-  {date:"Jul 27, 2018",venue:"The Forum",note:"Inglewood, CA Â· â 4.14"},
-  {date:"Jul 25, 2018",venue:"Bill Graham Civic Auditorium",note:"San Francisco, CA Â· â 3.78"},
-  {date:"Jul 24, 2018",venue:"Bill Graham Civic Auditorium",note:"San Francisco, CA Â· â 4.35"},
-  {date:"Jul 22, 2018",venue:"Gorge Amphitheatre",note:"George, WA Â· â 4.48"},
-  {date:"Jul 21, 2018",venue:"Gorge Amphitheatre",note:"George, WA Â· â 3.65"},
-  {date:"Jul 20, 2018",venue:"Gorge Amphitheatre",note:"George, WA Â· â 4.09"},
-  {date:"Dec 31, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.30"},
-  {date:"Dec 30, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.58"},
-  {date:"Dec 29, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 3.73"},
-  {date:"Dec 28, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.08"},
-  {date:"Sep 03, 2017",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.82"},
-  {date:"Sep 02, 2017",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.80"},
-  {date:"Sep 01, 2017",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.57"},
-  {date:"Aug 06, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.61"},
-  {date:"Aug 05, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.35"},
-  {date:"Aug 04, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.50"},
-  {date:"Aug 02, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.39"},
-  {date:"Aug 01, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.26"},
-  {date:"Jul 30, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.58"},
-  {date:"Jul 29, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.18"},
-  {date:"Jul 28, 2017",venue:"Madison Square Garden",note:"New York, NY Â· â 4.53"},
-  {date:"Jul 16, 2017",venue:"Huntington Bank Pavilion at Northerly Island",note:"Chicago, IL Â· â 4.01"},
-  {date:"Jul 15, 2017",venue:"Huntington Bank Pavilion at Northerly Island",note:"Chicago, IL Â· â 4.44"},
-  {date:"Jul 14, 2017",venue:"Huntington Bank Pavilion at Northerly Island",note:"Chicago, IL Â· â 3.50"},
-  {date:"Dec 31, 2016",venue:"Madison Square Garden",note:"New York, NY Â· â 4.05"},
-  {date:"Dec 30, 2016",venue:"Madison Square Garden",note:"New York, NY Â· â 4.55"},
-  {date:"Dec 29, 2016",venue:"Madison Square Garden",note:"New York, NY Â· â 4.20"},
-  {date:"Dec 28, 2016",venue:"Madison Square Garden",note:"New York, NY Â· â 4.25"},
-  {date:"Oct 31, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.50"},
-  {date:"Oct 30, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.49"},
-  {date:"Oct 29, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.45"},
-  {date:"Oct 28, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV Â· â 4.53"},
-  {date:"Oct 22, 2016",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA Â· â 4.50"},
-  {date:"Oct 21, 2016",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA Â· â 4.30"},
-  {date:"Sep 04, 2016",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.55"},
-  {date:"Sep 03, 2016",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.47"},
-  {date:"Sep 02, 2016",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.40"},
-  {date:"Jul 16, 2016",venue:"Gorge Amphitheatre",note:"George, WA Â· â 3.58"},
-  {date:"Jul 15, 2016",venue:"Gorge Amphitheatre",note:"George, WA Â· â 4.45"},
-  {date:"Jun 26, 2016",venue:"Klipsch Music Center",note:"Noblesville, IN Â· â 3.58"},
-  {date:"Jun 25, 2016",venue:"Wrigley Field",note:"Chicago, IL Â· â 4.25"},
-  {date:"Jun 24, 2016",venue:"Wrigley Field",note:"Chicago, IL Â· â 3.89"},
-  {date:"Jan 17, 2016",venue:"BarcelÃ³ Maya Beach",note:"Riviera Maya, Mexico Â· â 4.10"},
-  {date:"Jan 16, 2016",venue:"BarcelÃ³ Maya Beach",note:"Riviera Maya, Mexico Â· â 3.41"},
-  {date:"Jan 15, 2016",venue:"BarcelÃ³ Maya Beach",note:"Riviera Maya, Mexico Â· â 3.67"},
-  {date:"Jan 02, 2016",venue:"Madison Square Garden",note:"New York, NY Â· â 4.55"},
-  {date:"Jan 01, 2016",venue:"Madison Square Garden",note:"New York, NY Â· â 3.56"},
-  {date:"Dec 31, 2015",venue:"Madison Square Garden",note:"New York, NY Â· â 4.57"},
-  {date:"Dec 30, 2015",venue:"Madison Square Garden",note:"New York, NY Â· â 4.31"},
-  {date:"Sep 06, 2015",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.57"},
-  {date:"Sep 05, 2015",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.82"},
-  {date:"Sep 04, 2015",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.82"},
-  {date:"Dec 31, 2014",venue:"American Airlines Arena",note:"Miami, FL Â· â 4.28"},
-  {date:"Oct 18, 2014",venue:"Key Arena",note:"Seattle, WA Â· â 3.17"},
-  {date:"Aug 31, 2014",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.33"},
-  {date:"Aug 30, 2014",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.09"},
-  {date:"Aug 29, 2014",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.31"},
-  {date:"Aug 03, 2014",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA Â· â 4.22"},
-  {date:"Aug 02, 2014",venue:"Oak Mountain Amphitheatre",note:"Pelham, AL Â· â 3.58"},
-  {date:"Aug 01, 2014",venue:"Amphitheater at the Wharf",note:"Orange Beach, AL Â· â 3.84"},
-  {date:"Sep 01, 2013",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.72"},
-  {date:"Aug 31, 2013",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 4.19"},
-  {date:"Aug 30, 2013",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO Â· â 3.88"},
-  {date:"Aug 25, 2012",venue:"Aaron's Amphitheatre at Lakewood",note:"Atlanta, GA Â· â 3.29"},
-  {date:"Aug 24, 2012",venue:"Oak Mountain Amphitheatre",note:"Pelham, AL Â· â 3.93"},
-  {date:"Jun 15, 2011",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA Â· â 3.28"},
-  {date:"Jun 10, 2009",venue:"Thompson-Boling Arena",note:"Knoxville, TN Â· â 3.65"},
+  {date:"Jul 05, 2025",venue:"Folsom Field",note:"Boulder, CO &#183; &#9733; 4.18"},
+  {date:"Jul 04, 2025",venue:"Folsom Field",note:"Boulder, CO &#183; &#9733; 4.48"},
+  {date:"Jul 03, 2025",venue:"Folsom Field",note:"Boulder, CO &#183; &#9733; 4.23"},
+  {date:"Aug 30, 2024",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.50"},
+  {date:"Aug 29, 2024",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.98"},
+  {date:"Aug 18, 2024",venue:"The Woodlands",note:"Dover, DE &#183; &#9733; 3.40"},
+  {date:"Aug 17, 2024",venue:"The Woodlands",note:"Dover, DE &#183; &#9733; 4.59"},
+  {date:"Aug 16, 2024",venue:"The Woodlands",note:"Dover, DE &#183; &#9733; 4.55"},
+  {date:"Aug 15, 2024",venue:"The Woodlands",note:"Dover, DE &#183; &#9733; 4.32"},
+  {date:"Apr 19, 2024",venue:"Sphere",note:"Las Vegas, NV &#183; &#9733; 4.50"},
+  {date:"Apr 18, 2024",venue:"Sphere",note:"Las Vegas, NV &#183; &#9733; 4.34"},
+  {date:"Sep 03, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.06"},
+  {date:"Sep 02, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.37"},
+  {date:"Sep 01, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.34"},
+  {date:"Aug 31, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.83"},
+  {date:"Jul 16, 2023",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.24"},
+  {date:"Jul 15, 2023",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.35"},
+  {date:"Jul 14, 2023",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.21"},
+  {date:"Sep 04, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.05"},
+  {date:"Sep 03, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.29"},
+  {date:"Sep 02, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.24"},
+  {date:"Sep 01, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.78"},
+  {date:"Jul 20, 2022",venue:"TD Pavilion at the Mann",note:"Philadelphia, PA &#183; &#9733; 3.74"},
+  {date:"Jul 19, 2022",venue:"TD Pavilion at the Mann",note:"Philadelphia, PA &#183; &#9733; 4.14"},
+  {date:"Apr 23, 2022",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.37"},
+  {date:"Apr 22, 2022",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.53"},
+  {date:"Apr 21, 2022",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.49"},
+  {date:"Apr 20, 2022",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 3.59"},
+  {date:"Oct 31, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.23"},
+  {date:"Oct 30, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.31"},
+  {date:"Oct 29, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.44"},
+  {date:"Oct 28, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.55"},
+  {date:"Sep 05, 2021",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.34"},
+  {date:"Sep 04, 2021",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.74"},
+  {date:"Sep 03, 2021",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.86"},
+  {date:"Aug 29, 2021",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.59"},
+  {date:"Aug 28, 2021",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.87"},
+  {date:"Aug 27, 2021",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.59"},
+  {date:"Aug 01, 2021",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.43"},
+  {date:"Jul 31, 2021",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.13"},
+  {date:"Jul 30, 2021",venue:"Oak Mountain Amphitheatre",note:"Pelham, AL &#183; &#9733; 4.05"},
+  {date:"Dec 08, 2019",venue:"North Charleston Coliseum",note:"North Charleston, SC &#183; &#9733; 3.02"},
+  {date:"Dec 07, 2019",venue:"North Charleston Coliseum",note:"North Charleston, SC &#183; &#9733; 4.26"},
+  {date:"Dec 06, 2019",venue:"North Charleston Coliseum",note:"North Charleston, SC &#183; &#9733; 4.22"},
+  {date:"Sep 01, 2019",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.06"},
+  {date:"Aug 31, 2019",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.11"},
+  {date:"Aug 30, 2019",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.73"},
+  {date:"Jul 14, 2019",venue:"Alpine Valley Music Theatre",note:"East Troy, WI &#183; &#9733; 4.62"},
+  {date:"Jul 13, 2019",venue:"Alpine Valley Music Theatre",note:"East Troy, WI &#183; &#9733; 3.78"},
+  {date:"Jul 12, 2019",venue:"Alpine Valley Music Theatre",note:"East Troy, WI &#183; &#9733; 3.71"},
+  {date:"Dec 31, 2018",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.23"},
+  {date:"Dec 30, 2018",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.58"},
+  {date:"Nov 03, 2018",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.41"},
+  {date:"Nov 02, 2018",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.48"},
+  {date:"Oct 21, 2018",venue:"Hampton Coliseum",note:"Hampton, VA &#183; &#9733; 4.19"},
+  {date:"Oct 20, 2018",venue:"Hampton Coliseum",note:"Hampton, VA &#183; &#9733; 4.17"},
+  {date:"Oct 19, 2018",venue:"Hampton Coliseum",note:"Hampton, VA &#183; &#9733; 4.50"},
+  {date:"Sep 02, 2018",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.21"},
+  {date:"Sep 01, 2018",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.01"},
+  {date:"Aug 31, 2018",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.49"},
+  {date:"Jul 28, 2018",venue:"The Forum",note:"Inglewood, CA &#183; &#9733; 3.74"},
+  {date:"Jul 27, 2018",venue:"The Forum",note:"Inglewood, CA &#183; &#9733; 4.14"},
+  {date:"Jul 25, 2018",venue:"Bill Graham Civic Auditorium",note:"San Francisco, CA &#183; &#9733; 3.78"},
+  {date:"Jul 24, 2018",venue:"Bill Graham Civic Auditorium",note:"San Francisco, CA &#183; &#9733; 4.35"},
+  {date:"Jul 22, 2018",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 4.48"},
+  {date:"Jul 21, 2018",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.65"},
+  {date:"Jul 20, 2018",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 4.09"},
+  {date:"Dec 31, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.30"},
+  {date:"Dec 30, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.58"},
+  {date:"Dec 29, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 3.73"},
+  {date:"Dec 28, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.08"},
+  {date:"Sep 03, 2017",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.82"},
+  {date:"Sep 02, 2017",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.80"},
+  {date:"Sep 01, 2017",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.57"},
+  {date:"Aug 06, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.61"},
+  {date:"Aug 05, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.35"},
+  {date:"Aug 04, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.50"},
+  {date:"Aug 02, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.39"},
+  {date:"Aug 01, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.26"},
+  {date:"Jul 30, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.58"},
+  {date:"Jul 29, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.18"},
+  {date:"Jul 28, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.53"},
+  {date:"Jul 16, 2017",venue:"Huntington Bank Pavilion at Northerly Island",note:"Chicago, IL &#183; &#9733; 4.01"},
+  {date:"Jul 15, 2017",venue:"Huntington Bank Pavilion at Northerly Island",note:"Chicago, IL &#183; &#9733; 4.44"},
+  {date:"Jul 14, 2017",venue:"Huntington Bank Pavilion at Northerly Island",note:"Chicago, IL &#183; &#9733; 3.50"},
+  {date:"Dec 31, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.05"},
+  {date:"Dec 30, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.55"},
+  {date:"Dec 29, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.20"},
+  {date:"Dec 28, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.25"},
+  {date:"Oct 31, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.50"},
+  {date:"Oct 30, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.49"},
+  {date:"Oct 29, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.45"},
+  {date:"Oct 28, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.53"},
+  {date:"Oct 22, 2016",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA &#183; &#9733; 4.50"},
+  {date:"Oct 21, 2016",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA &#183; &#9733; 4.30"},
+  {date:"Sep 04, 2016",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.55"},
+  {date:"Sep 03, 2016",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.47"},
+  {date:"Sep 02, 2016",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.40"},
+  {date:"Jul 16, 2016",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.58"},
+  {date:"Jul 15, 2016",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 4.45"},
+  {date:"Jun 26, 2016",venue:"Klipsch Music Center",note:"Noblesville, IN &#183; &#9733; 3.58"},
+  {date:"Jun 25, 2016",venue:"Wrigley Field",note:"Chicago, IL &#183; &#9733; 4.25"},
+  {date:"Jun 24, 2016",venue:"Wrigley Field",note:"Chicago, IL &#183; &#9733; 3.89"},
+  {date:"Jan 17, 2016",venue:"Barcel&#243; Maya Beach",note:"Riviera Maya, Mexico &#183; &#9733; 4.10"},
+  {date:"Jan 16, 2016",venue:"Barcel&#243; Maya Beach",note:"Riviera Maya, Mexico &#183; &#9733; 3.41"},
+  {date:"Jan 15, 2016",venue:"Barcel&#243; Maya Beach",note:"Riviera Maya, Mexico &#183; &#9733; 3.67"},
+  {date:"Jan 02, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.55"},
+  {date:"Jan 01, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 3.56"},
+  {date:"Dec 31, 2015",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.57"},
+  {date:"Dec 30, 2015",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.31"},
+  {date:"Sep 06, 2015",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.57"},
+  {date:"Sep 05, 2015",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.82"},
+  {date:"Sep 04, 2015",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.82"},
+  {date:"Dec 31, 2014",venue:"American Airlines Arena",note:"Miami, FL &#183; &#9733; 4.28"},
+  {date:"Oct 18, 2014",venue:"Key Arena",note:"Seattle, WA &#183; &#9733; 3.17"},
+  {date:"Aug 31, 2014",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.33"},
+  {date:"Aug 30, 2014",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.09"},
+  {date:"Aug 29, 2014",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.31"},
+  {date:"Aug 03, 2014",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA &#183; &#9733; 4.22"},
+  {date:"Aug 02, 2014",venue:"Oak Mountain Amphitheatre",note:"Pelham, AL &#183; &#9733; 3.58"},
+  {date:"Aug 01, 2014",venue:"Amphitheater at the Wharf",note:"Orange Beach, AL &#183; &#9733; 3.84"},
+  {date:"Sep 01, 2013",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.72"},
+  {date:"Aug 31, 2013",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.19"},
+  {date:"Aug 30, 2013",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.88"},
+  {date:"Aug 25, 2012",venue:"Aaron's Amphitheatre at Lakewood",note:"Atlanta, GA &#183; &#9733; 3.29"},
+  {date:"Aug 24, 2012",venue:"Oak Mountain Amphitheatre",note:"Pelham, AL &#183; &#9733; 3.93"},
+  {date:"Jun 15, 2011",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA &#183; &#9733; 3.28"},
+  {date:"Jun 10, 2009",venue:"Thompson-Boling Arena",note:"Knoxville, TN &#183; &#9733; 3.65"},
 ];
 
 const gooseShows = [
-  {date:"Dec 13, 2025",venue:"Amica Mutual Pavilion",note:"Providence, RI Â· Goosemas"},
-  {date:"Dec 12, 2025",venue:"Amica Mutual Pavilion",note:"Providence, RI Â· Goosemas"},
+  {date:"Dec 13, 2025",venue:"Amica Mutual Pavilion",note:"Providence, RI &#183; Goosemas"},
+  {date:"Dec 12, 2025",venue:"Amica Mutual Pavilion",note:"Providence, RI &#183; Goosemas"},
   {date:"Sep 24, 2025",venue:"Louisville Palace Theatre",note:"Louisville, KY"},
   {date:"Sep 23, 2025",venue:"Louisville Palace Theatre",note:"Louisville, KY"},
   {date:"Jun 07, 2025",venue:"Fiddler's Green Amphitheatre",note:"Greenwood Village, CO"},
   {date:"Jun 06, 2025",venue:"Fiddler's Green Amphitheatre",note:"Greenwood Village, CO"},
-  {date:"May 10, 2025",venue:"El Ganzo Oasis",note:"San JosÃ© del Cabo, Mexico Â· Viva El Gonzo Fest Â· electric set"},
-  {date:"May 10, 2025",venue:"El Ganzo Oasis",note:"San JosÃ© del Cabo, Mexico Â· Viva El Gonzo Fest Â· acoustic set"},
-  {date:"May 09, 2025",venue:"El Ganzo Oasis",note:"San JosÃ© del Cabo, Mexico Â· Viva El Gonzo Fest"},
-  {date:"May 08, 2025",venue:"El Ganzo Oasis",note:"San JosÃ© del Cabo, Mexico Â· Viva El Gonzo Fest"},
+  {date:"May 10, 2025",venue:"El Ganzo Oasis",note:"San Jos&#233; del Cabo, Mexico &#183; Viva El Gonzo Fest &#183; electric set"},
+  {date:"May 10, 2025",venue:"El Ganzo Oasis",note:"San Jos&#233; del Cabo, Mexico &#183; Viva El Gonzo Fest &#183; acoustic set"},
+  {date:"May 09, 2025",venue:"El Ganzo Oasis",note:"San Jos&#233; del Cabo, Mexico &#183; Viva El Gonzo Fest"},
+  {date:"May 08, 2025",venue:"El Ganzo Oasis",note:"San Jos&#233; del Cabo, Mexico &#183; Viva El Gonzo Fest"},
   {date:"Dec 30, 2024",venue:"Moody Center",note:"Austin, TX"},
   {date:"Dec 14, 2024",venue:"North Charleston Coliseum",note:"North Charleston, SC"},
   {date:"Dec 13, 2024",venue:"North Charleston Coliseum",note:"North Charleston, SC"},
@@ -2261,7 +2261,7 @@ renderTourLog();
       <div class="suggest-drawer-title" id="suggest-drawer-title">SUGGESTIONS</div>
       <div class="suggest-drawer-context" id="suggest-drawer-context"></div>
     </div>
-    <button class="suggest-drawer-close" onclick="closeSuggest()">â</button>
+    <button class="suggest-drawer-close" onclick="closeSuggest()">&#10005;</button>
   </div>
   <div class="suggest-drawer-body">
     <div id="suggest-output" class="suggest-content"></div>
