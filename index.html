@@ -354,59 +354,21 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
       <div class="sec-head">
         <div class="sec-label">ALBUMS OF THE YEAR</div>
         <div class="sec-rule"></div>
-        <button class="suggest-btn" onclick="openSuggest('aoty')"><span class="sb-icon">&#10022;</span> SUGGEST</button>
       </div>
       <ul class="aoty-list" id="aoty-list"></ul>
       <div class="orn">&#10022; &#10022; &#10022;</div>
-      <div class="add-form">
-        <div class="form-title">+ LOG AN ALBUM</div>
         <div class="frow">
-          <input class="finput" id="n-artist" placeholder="Artist" type="text">
-          <input class="finput" id="n-title" placeholder="Album title" type="text">
-        </div>
         <div class="frow">
-          <input class="finput" id="n-cover" placeholder="Cover image URL (optional)" type="text">
-          <input class="finput" id="n-note" placeholder="One-line take..." type="text">
-        </div>
         <div class="frow3">
-          <select class="finput" id="n-tier">
-            <option value="">Tier</option>
-            <option value="AOTY">AOTY contender</option>
-            <option value="top">Top listen</option>
-            <option value="solid">Solid</option>
-            <option value="meh">Meh</option>
-          </select>
-          <input class="finput" id="n-date" placeholder="Date heard" type="text">
-          <button class="btn" onclick="addAlbum()">ADD</button>
-        </div>
-      </div>
     </div>
 
     <div class="tab" id="tab-watchlist">
-      <div class="sec-head"><div class="sec-label">WATCHLIST</div><div class="sec-rule"></div><button class="suggest-btn" onclick="openSuggest('watchlist')"><span class="sb-icon">&#10022;</span> SUGGEST</button></div>
       <div class="pq">"If it's not on the list, it's not on the radar."</div>
       <div id="wl-list"></div>
       <div class="orn">&#10022; &#10022; &#10022;</div>
-      <div class="add-form">
-        <div class="form-title">+ ADD TO WATCHLIST</div>
         <div class="frow">
-          <input class="finput" id="w-artist" placeholder="Artist" type="text">
-          <input class="finput" id="w-album" placeholder="Album / project" type="text">
-        </div>
         <div class="frow">
-          <input class="finput" id="w-note" placeholder="Why you're watching..." type="text">
-          <input class="finput" id="w-date" placeholder="Release date" type="text">
-        </div>
         <div class="frow3">
-          <select class="finput" id="w-pri">
-            <option value="high">High priority</option>
-            <option value="med" selected>Medium</option>
-            <option value="low">Low</option>
-          </select>
-          <input class="finput" id="w-placeholder" placeholder="" type="text" style="visibility:hidden">
-          <button class="btn" onclick="addWatch()">ADD</button>
-        </div>
-      </div>
     </div>
 
     <div class="tab" id="tab-profile">
@@ -1533,7 +1495,7 @@ function renderAOTY(){
     inf.innerHTML=`<div class="alb-title">${alb.title}</div><div class="alb-artist">${alb.artist}</div>${alb.note?`<div class="alb-note">${alb.note}</div>`:''}`;
     li.appendChild(inf);
     const rt=document.createElement('div'); rt.className='aoty-right';
-    rt.innerHTML=`${badge(alb.tier)}<div style="font-size:9px;color:var(--dim);margin-top:4px">${alb.date||''}</div><button onclick="removeAlbum(${alb.id})" style="background:none;border:none;cursor:pointer;font-size:9px;color:var(--dim);margin-top:4px;display:block">&#10005; remove</button>`;
+    rt.innerHTML=`${badge(alb.tier)}<div style="font-size:9px;color:var(--dim);margin-top:4px">${alb.date||''}</div>`;
     li.appendChild(rt);
     li.addEventListener('dragstart',e=>{e.dataTransfer.setData('id',alb.id);li.classList.add('dragging')});
     li.addEventListener('dragend',()=>li.classList.remove('dragging'));
@@ -1630,53 +1592,6 @@ function updateStats(){
 }
 
 // &#9472;&#9472; auth &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
-const ADMIN_PASS='Robertdylan1!!';
-let authed=false;
-function requireAuth(action){
-  if(authed){action();return;}
-  const pw=prompt('Enter password to make changes:');
-  if(pw===ADMIN_PASS){authed=true;action();}
-  else if(pw!==null){alert('Incorrect password.');}
-}
-
-function addAlbum(){
-  requireAuth(()=>{
-    const artist=document.getElementById('n-artist').value.trim();
-    const title=document.getElementById('n-title').value.trim();
-    if(!artist||!title)return;
-    const cover=document.getElementById('n-cover').value.trim();
-    const note=document.getElementById('n-note').value.trim();
-    const tier=document.getElementById('n-tier').value||'solid';
-    const date=document.getElementById('n-date').value.trim()||new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'});
-    const maxRank=albums.length?Math.max(...albums.map(a=>a.rank)):0;
-    albums.push({id:Date.now(),rank:maxRank+1,artist,title,cover,note,tier,date});
-    ['n-artist','n-title','n-cover','n-note','n-date'].forEach(id=>document.getElementById(id).value='');
-    document.getElementById('n-tier').value='';
-    renderAOTY();renderSidebar();save();
-    document.getElementById('lu').textContent=date+', 2026';
-  });
-}
-
-function removeAlbum(id){
-  requireAuth(()=>{
-    albums=albums.filter(a=>a.id!==id);
-    renderAOTY();renderSidebar();save();
-  });
-}
-
-function addWatch(){
-  requireAuth(()=>{
-    const artist=document.getElementById('w-artist').value.trim(); if(!artist)return;
-    const album=document.getElementById('w-album').value.trim()||'TBD';
-    const note=document.getElementById('w-note').value.trim();
-    const date=document.getElementById('w-date').value.trim()||'TBD';
-    const pri=document.getElementById('w-pri').value;
-    allWatchlist.push({id:Date.now(),artist,album,note,date,pri});
-    ['w-artist','w-album','w-note','w-date'].forEach(id=>document.getElementById(id).value='');
-    renderWatchlist();renderSidebar();updateStats();save();
-  });
-}
-
 function showTab(name,btn){
 
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
