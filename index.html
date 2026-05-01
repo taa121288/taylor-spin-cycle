@@ -199,9 +199,6 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
 }
 
 /* &#9472;&#9472; SUGGEST DRAWER &#9472;&#9472; */
-.suggest-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-family:var(--mono);font-size:9px;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);cursor:pointer;transition:all .25s var(--ease-out);display:flex;align-items:center;gap:8px;white-space:nowrap}
-.suggest-btn:hover{border-color:var(--cobalt);color:var(--cobalt);background:var(--cobalt-light)}
-.suggest-btn .sb-icon{font-size:11px}
 .suggest-drawer{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--bg);border-top:3px solid var(--cobalt);box-shadow:0 -16px 60px rgba(0,0,0,.1);transform:translateY(100%);transition:transform .4s var(--ease-out);max-height:70vh;display:flex;flex-direction:column;border-radius:16px 16px 0 0}
 .suggest-drawer.open{transform:translateY(0)}
 .suggest-drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px 32px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
@@ -381,20 +378,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
       <div id="shows-attended"></div>
       <div class="orn">&#10022; &#10022; &#10022;</div>
       <div style="margin-top:12px">
-        <div class="sec-head"><div class="sec-label">UPCOMING SHOWS</div><div class="sec-rule"></div><button class="suggest-btn" onclick="openSuggest('shows')"><span class="sb-icon">&#10022;</span> SUGGEST</button></div>
         <div id="shows-upcoming"></div>
-      </div>
-      <div class="add-form">
-        <div class="form-title">+ ADD A SHOW</div>
-        <div class="frow">
-          <input class="finput" id="sh-artist" placeholder="Artist" type="text">
-          <input class="finput" id="sh-date" placeholder="Date" type="text">
-        </div>
-        <div class="frow">
-          <input class="finput" id="sh-venue" placeholder="Venue" type="text">
-          <input class="finput" id="sh-note" placeholder="Notes..." type="text">
-        </div>
-        <button class="btn" style="margin-top:0" onclick="addShow()">ADD SHOW</button>
       </div>
     </div>
 
@@ -487,7 +471,7 @@ select.finput{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xm
     <div id="sb-watch"></div>
     <div class="orn" style="margin:12px 0">&#8212; &#10022; &#8212;</div>
     <div class="chat-box">
-      <div class="chat-head">ASK THE CRATE <span class="chat-status">&#9679; ONLINE</span></div>
+      <div class="chat-head">DISCOVER<span class="chat-status">DISCOVER</span></div>
       <div class="chat-msgs" id="chat-msgs">
         <div class="cmsg ai"><div class="mlabel">Crate Digger</div>What are you looking for? Ask me about new releases, what to spin next &#8212; filtered through your taste.</div>
       </div>
@@ -1600,7 +1584,25 @@ function showTab(name,btn){
   if(btn)btn.classList.add('active');
 }
 
-const SYSTEM=`You are a music recommendation assistant for phirst_tube. 2026 AOTY ranking: 1. Ratboys - Singin to an Empty Chair, 2. Twisted Teens - Blame the Clown (possibly tied #1), 3. Courtney Marie Andrews - Valentine. Also logged: Buck Meek - The Mirror (top), Iron & Wine - Hen's Teeth (solid), Victoryland - My Heart Is A Room With No Cameras In It (solid). Core artists: Big Thief, Bon Iver, Bob Dylan, Goose, Kendrick, Waxahatchee, Andy Shauf, Wednesday/MJ Lenderman. Works: bold headphone albums, great songwriting of small moments, emotional vocals, weirdness paired with beauty. Doesn't work: monotone delivery, creepy aesthetics, too polished. High priority watchlist: Snail Mail Ricochet Mar 27, This Is Lorelei, Wednesday, Geese. Be concise and opinionated &#8212; music friend, not Wikipedia.`;
+const SYSTEM=`You are a music recommendation engine for a Denver-based listener. Your job is to suggest albums, shows, and artists based on their taste profile.
+
+TASTE PROFILE (use this to understand preferences):
+- AOTY favorites: ${albums.map(a=>a.artist+" - "+a.title).join(", ")}
+- Watchlist (upcoming albums they want): ${allWatchlist.map(w=>w.artist+" - "+w.album).join(", ")}
+- Shows attended: ${shows.map(s=>s.artist+" @ "+s.venue).join(", ")}
+- Top albums by year: ${tasteYears.map(y=>y.yr+": "+y.top.join(", ")).join(" | ")}
+- Vinyl collection highlights: ${vinylCollection.slice(0,30).map(v=>v.artist+" - "+v.title).join(", ")}
+
+DENVER VENUES TO RECOMMEND SHOWS AT: Mission Ballroom, Bluebird Theater, Lost Lake Lounge, Globe Hall, Gothic Theatre, Red Rocks Amphitheatre, Ogden Theatre, Ball Arena, Boulder Theater, Fox Theatre (Boulder), Cervantes Masterpiece Ballroom, Summit Music Hall, Dillon Amphitheater, Fiddler's Green
+
+RECOMMENDATION RULES:
+1. For album recs: suggest new/upcoming releases from artists similar to their taste. Consider genre, mood, and connections between artists they like.
+2. For show recs: suggest upcoming concerts at Denver/Colorado venues by artists matching their taste. Include venue, date if known, and why they'd like it.
+3. For watchlist adds: suggest albums coming soon that match their taste but aren't already on their watchlist.
+4. Always explain WHY you're recommending something based on their specific taste.
+5. Be concise. 3-5 recommendations per query. Format nicely.
+6. If they search an artist name, tell them about that artist's upcoming shows and releases.
+`;
 
 let chatHistory=[];
 async function sendChat(){
@@ -1706,15 +1708,6 @@ function secureTickets(id){
   });
 }
 
-function addShow(){
-  const artist=document.getElementById('sh-artist').value.trim(); if(!artist)return;
-  const date=document.getElementById('sh-date').value.trim()||'TBD';
-  const venue=document.getElementById('sh-venue').value.trim();
-  const note=document.getElementById('sh-note').value.trim();
-  shows.push({id:Date.now(),artist,date,venue,note});
-  ['sh-artist','sh-date','sh-venue','sh-note'].forEach(id=>document.getElementById(id).value='');
-  renderShows();save();
-}
 
 function removeShow(id){
   shows=shows.filter(s=>s.id!==id);
@@ -1841,305 +1834,7 @@ function buildContext() {
   return { aotyList, wlList, showList, excludeArtists, tasteTopAll, tasteRestSample };
 }
 
-async function openSuggest(mode) {
-  const drawer = document.getElementById('suggest-drawer');
-  const output = document.getElementById('suggest-output');
-  const title = document.getElementById('suggest-drawer-title');
-  const ctx = document.getElementById('suggest-drawer-context');
-
-  const titles = { aoty: 'ALBUM SUGGESTIONS', watchlist: 'WATCHLIST PICKS', shows: 'SHOW SUGGESTIONS' };
-  const contexts = { aoty: 'Based on your 2026 rankings + taste profile', watchlist: 'Upcoming releases matched to your taste history', shows: 'Based on your upcoming shows + touring artists' };
-  title.textContent = titles[mode];
-  ctx.textContent = contexts[mode];
-
-  output.innerHTML = '';
-  drawer.classList.add('open');
-
-  const { aotyList, wlList, showList, excludeArtists, tasteTopAll, tasteRestSample } = buildContext();
-
-  const systemPrompt = `You are a concise music recommendation engine. Rules:
-- ONLY recommend albums/artists you can verify exist via web search. Never fabricate.
-- Never recommend anything already on the user's AOTY list, watchlist, or shows list.
-- No preamble, no "I'll search for..." text. Jump straight to results.
-- Format each rec as: **Artist &#8212; Album Title** (Release Date)\\nOne to two sentences on why it fits. That's it.
-- Number each recommendation 1-5.`;
-
-  const prompts = {
-    aoty: `Find 5 albums released in 2026 (already out or releasing soon) for this listener. Search the web for "best indie albums 2026," "new folk americana albums 2026," "best albums march april may 2026" and similar queries.
-
-EXCLUDE THESE ARTISTS (already on their list): ${excludeArtists}
-
-Their all-time top albums by year:
-${tasteTopAll}
-
-${tasteRestSample}
-
-Their 2026 AOTY so far:
-${aotyList}
-
-Find albums that match this taste &#8212; indie rock, folk, Americana, singer-songwriter, emotional vocals, great songwriting, weirdness + beauty. No over-polished pop. Only verified 2026 releases.`,
-
-    watchlist: `Search the web for confirmed upcoming album releases in the next 3 months (April&#8211;July 2026). Search for "upcoming indie albums 2026," "new album announcements 2026," "spring summer 2026 album releases" and similar queries. Cross-reference what you find against this listener's taste.
-
-EXCLUDE THESE ARTISTS (already on their AOTY or watchlist): ${excludeArtists}
-
-Their all-time top albums by year:
-${tasteTopAll}
-
-${tasteRestSample}
-
-Their current watchlist:
-${wlList}
-
-Find 5 confirmed upcoming releases from artists NOT on the lists above. Match to their taste: indie rock, folk, Americana, singer-songwriter, jazz, neo-soul. Emotional vocals, great songwriting. Only include albums with confirmed release dates that you can verify via search.`,
-
-    shows: `Search the web for confirmed 2026 concerts coming to the Denver, Boulder, and surrounding Colorado metro area. Search for "red rocks 2026 schedule," "mission ballroom denver 2026," "ogden theatre denver 2026," "fiddlers green 2026," "boulder theater 2026," "fox theatre boulder 2026," "bluebird theater denver 2026," "globe hall denver 2026," "denver boulder concerts summer 2026" and related queries.
-
-IMPORTANT: Only include shows at venues in the Denver/Boulder/Front Range Colorado area. Do NOT suggest shows in other states.
-
-EXCLUDE THESE (already on their calendar): ${showList}
-
-Artists they love: Phish, Goose, Big Thief, Jason Isbell, Waxahatchee, Billy Strings, Wednesday, MJ Lenderman, Kevin Morby, Bon Iver, Snail Mail, Courtney Marie Andrews, Buck Meek, Bright Eyes, Fleet Foxes, War on Drugs, Andy Shauf, Father John Misty, Adrianne Lenker, Khruangbin, Trey Anastasio. Based in Denver/Boulder area.
-
-Find 5 confirmed Colorado shows. Only verified announcements with real dates and venues. Every recommendation must be at a Colorado venue.`
-  };
-
-  output.innerHTML = `<div class="suggest-loading"><div class="suggest-spinner"></div><span>Searching...</span></div>`;
-
-  const API_KEY = getApiKey();
-  if (!API_KEY) {
-    showApiKeyInput(output, () => openSuggest(mode));
-    return;
-  }
-  const HEADERS = { 'Content-Type': 'application/json', 'x-api-key': API_KEY, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' };
-  const TOOLS = [{ type: 'web_search_20250305', name: 'web_search' }];
-
-  try {
-    let messages = [{ role: 'user', content: prompts[mode] }];
-    let finalText = '';
-
-    // Agentic loop &#8212; handles tool_use turns until we get a final text response
-    for (let i = 0; i < 8; i++) {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: HEADERS,
-        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 2000, system: systemPrompt, tools: TOOLS, messages })
-      });
-      const data = await res.json();
-      if (!res.ok) { output.innerHTML = `<p style="color:var(--dim);font-size:12px">API error ${res.status}: ${data.error?.message}</p>`; return; }
-
-      // Collect text blocks from this turn
-      const textBlocks = data.content.filter(b => b.type === 'text').map(b => b.text).join('');
-      if (textBlocks) finalText = textBlocks;
-
-      if (data.stop_reason === 'end_turn') break;
-
-      if (data.stop_reason === 'tool_use') {
-        // Build tool results and continue
-        const toolResults = data.content
-          .filter(b => b.type === 'tool_use')
-          .map(b => ({ type: 'tool_result', tool_use_id: b.id, content: JSON.stringify(b.input) }));
-        messages = [...messages, { role: 'assistant', content: data.content }, { role: 'user', content: toolResults }];
-      } else {
-        break;
-      }
-    }
-
-    if (!finalText) { output.innerHTML = `<p style="color:var(--dim);font-size:12px">No response received.</p>`; return; }
-
-    const html = finalText
-      .replace(/^### (.+)$/gm, '<strong>$1</strong>')
-      .replace(/^## (.+)$/gm, '<strong>$1</strong>')
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/^[\-\*&#8226;] (.+)$/gm, '<li>$1</li>')
-      .replace(/(<li>.*<\/li>\n?)+/g, s => `<ul>${s}</ul>`)
-      .replace(/\n\n+/g, '</p><p>');
-    output.innerHTML = `<p>${html}</p>`;
-  } catch(e) {
-    output.innerHTML = `<p style="color:var(--dim);font-size:12px">Fetch error: ${e.message}</p>`;
-  }
-}
-
-// &#9472;&#9472; TOUR LOG DATA &#9472;&#9472;
 const phishShows = [
-  {date:"Jul 05, 2025",venue:"Folsom Field",note:"Boulder, CO &#183; &#9733; 4.18"},
-  {date:"Jul 04, 2025",venue:"Folsom Field",note:"Boulder, CO &#183; &#9733; 4.48"},
-  {date:"Jul 03, 2025",venue:"Folsom Field",note:"Boulder, CO &#183; &#9733; 4.23"},
-  {date:"Aug 30, 2024",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.50"},
-  {date:"Aug 29, 2024",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.98"},
-  {date:"Aug 18, 2024",venue:"The Woodlands",note:"Dover, DE &#183; &#9733; 3.40"},
-  {date:"Aug 17, 2024",venue:"The Woodlands",note:"Dover, DE &#183; &#9733; 4.59"},
-  {date:"Aug 16, 2024",venue:"The Woodlands",note:"Dover, DE &#183; &#9733; 4.55"},
-  {date:"Aug 15, 2024",venue:"The Woodlands",note:"Dover, DE &#183; &#9733; 4.32"},
-  {date:"Apr 19, 2024",venue:"Sphere",note:"Las Vegas, NV &#183; &#9733; 4.50"},
-  {date:"Apr 18, 2024",venue:"Sphere",note:"Las Vegas, NV &#183; &#9733; 4.34"},
-  {date:"Sep 03, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.06"},
-  {date:"Sep 02, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.37"},
-  {date:"Sep 01, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.34"},
-  {date:"Aug 31, 2023",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.83"},
-  {date:"Jul 16, 2023",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.24"},
-  {date:"Jul 15, 2023",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.35"},
-  {date:"Jul 14, 2023",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.21"},
-  {date:"Sep 04, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.05"},
-  {date:"Sep 03, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.29"},
-  {date:"Sep 02, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.24"},
-  {date:"Sep 01, 2022",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.78"},
-  {date:"Jul 20, 2022",venue:"TD Pavilion at the Mann",note:"Philadelphia, PA &#183; &#9733; 3.74"},
-  {date:"Jul 19, 2022",venue:"TD Pavilion at the Mann",note:"Philadelphia, PA &#183; &#9733; 4.14"},
-  {date:"Apr 23, 2022",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.37"},
-  {date:"Apr 22, 2022",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.53"},
-  {date:"Apr 21, 2022",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.49"},
-  {date:"Apr 20, 2022",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 3.59"},
-  {date:"Oct 31, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.23"},
-  {date:"Oct 30, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.31"},
-  {date:"Oct 29, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.44"},
-  {date:"Oct 28, 2021",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.55"},
-  {date:"Sep 05, 2021",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.34"},
-  {date:"Sep 04, 2021",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.74"},
-  {date:"Sep 03, 2021",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.86"},
-  {date:"Aug 29, 2021",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.59"},
-  {date:"Aug 28, 2021",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.87"},
-  {date:"Aug 27, 2021",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.59"},
-  {date:"Aug 01, 2021",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.43"},
-  {date:"Jul 31, 2021",venue:"Ameris Bank Amphitheatre",note:"Alpharetta, GA &#183; &#9733; 4.13"},
-  {date:"Jul 30, 2021",venue:"Oak Mountain Amphitheatre",note:"Pelham, AL &#183; &#9733; 4.05"},
-  {date:"Dec 08, 2019",venue:"North Charleston Coliseum",note:"North Charleston, SC &#183; &#9733; 3.02"},
-  {date:"Dec 07, 2019",venue:"North Charleston Coliseum",note:"North Charleston, SC &#183; &#9733; 4.26"},
-  {date:"Dec 06, 2019",venue:"North Charleston Coliseum",note:"North Charleston, SC &#183; &#9733; 4.22"},
-  {date:"Sep 01, 2019",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.06"},
-  {date:"Aug 31, 2019",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.11"},
-  {date:"Aug 30, 2019",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.73"},
-  {date:"Jul 14, 2019",venue:"Alpine Valley Music Theatre",note:"East Troy, WI &#183; &#9733; 4.62"},
-  {date:"Jul 13, 2019",venue:"Alpine Valley Music Theatre",note:"East Troy, WI &#183; &#9733; 3.78"},
-  {date:"Jul 12, 2019",venue:"Alpine Valley Music Theatre",note:"East Troy, WI &#183; &#9733; 3.71"},
-  {date:"Dec 31, 2018",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.23"},
-  {date:"Dec 30, 2018",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.58"},
-  {date:"Nov 03, 2018",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.41"},
-  {date:"Nov 02, 2018",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.48"},
-  {date:"Oct 21, 2018",venue:"Hampton Coliseum",note:"Hampton, VA &#183; &#9733; 4.19"},
-  {date:"Oct 20, 2018",venue:"Hampton Coliseum",note:"Hampton, VA &#183; &#9733; 4.17"},
-  {date:"Oct 19, 2018",venue:"Hampton Coliseum",note:"Hampton, VA &#183; &#9733; 4.50"},
-  {date:"Sep 02, 2018",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.21"},
-  {date:"Sep 01, 2018",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.01"},
-  {date:"Aug 31, 2018",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.49"},
-  {date:"Jul 28, 2018",venue:"The Forum",note:"Inglewood, CA &#183; &#9733; 3.74"},
-  {date:"Jul 27, 2018",venue:"The Forum",note:"Inglewood, CA &#183; &#9733; 4.14"},
-  {date:"Jul 25, 2018",venue:"Bill Graham Civic Auditorium",note:"San Francisco, CA &#183; &#9733; 3.78"},
-  {date:"Jul 24, 2018",venue:"Bill Graham Civic Auditorium",note:"San Francisco, CA &#183; &#9733; 4.35"},
-  {date:"Jul 22, 2018",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 4.48"},
-  {date:"Jul 21, 2018",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.65"},
-  {date:"Jul 20, 2018",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 4.09"},
-  {date:"Dec 31, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.30"},
-  {date:"Dec 30, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.58"},
-  {date:"Dec 29, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 3.73"},
-  {date:"Dec 28, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.08"},
-  {date:"Sep 03, 2017",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.82"},
-  {date:"Sep 02, 2017",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.80"},
-  {date:"Sep 01, 2017",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.57"},
-  {date:"Aug 06, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.61"},
-  {date:"Aug 05, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.35"},
-  {date:"Aug 04, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.50"},
-  {date:"Aug 02, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.39"},
-  {date:"Aug 01, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.26"},
-  {date:"Jul 30, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.58"},
-  {date:"Jul 29, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.18"},
-  {date:"Jul 28, 2017",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.53"},
-  {date:"Jul 16, 2017",venue:"Huntington Bank Pavilion at Northerly Island",note:"Chicago, IL &#183; &#9733; 4.01"},
-  {date:"Jul 15, 2017",venue:"Huntington Bank Pavilion at Northerly Island",note:"Chicago, IL &#183; &#9733; 4.44"},
-  {date:"Jul 14, 2017",venue:"Huntington Bank Pavilion at Northerly Island",note:"Chicago, IL &#183; &#9733; 3.50"},
-  {date:"Dec 31, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.05"},
-  {date:"Dec 30, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.55"},
-  {date:"Dec 29, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.20"},
-  {date:"Dec 28, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.25"},
-  {date:"Oct 31, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.50"},
-  {date:"Oct 30, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.49"},
-  {date:"Oct 29, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.45"},
-  {date:"Oct 28, 2016",venue:"MGM Grand Garden Arena",note:"Las Vegas, NV &#183; &#9733; 4.53"},
-  {date:"Oct 22, 2016",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA &#183; &#9733; 4.50"},
-  {date:"Oct 21, 2016",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA &#183; &#9733; 4.30"},
-  {date:"Sep 04, 2016",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.55"},
-  {date:"Sep 03, 2016",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.47"},
-  {date:"Sep 02, 2016",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.40"},
-  {date:"Jul 16, 2016",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 3.58"},
-  {date:"Jul 15, 2016",venue:"Gorge Amphitheatre",note:"George, WA &#183; &#9733; 4.45"},
-  {date:"Jun 26, 2016",venue:"Klipsch Music Center",note:"Noblesville, IN &#183; &#9733; 3.58"},
-  {date:"Jun 25, 2016",venue:"Wrigley Field",note:"Chicago, IL &#183; &#9733; 4.25"},
-  {date:"Jun 24, 2016",venue:"Wrigley Field",note:"Chicago, IL &#183; &#9733; 3.89"},
-  {date:"Jan 17, 2016",venue:"Barcel&#243; Maya Beach",note:"Riviera Maya, Mexico &#183; &#9733; 4.10"},
-  {date:"Jan 16, 2016",venue:"Barcel&#243; Maya Beach",note:"Riviera Maya, Mexico &#183; &#9733; 3.41"},
-  {date:"Jan 15, 2016",venue:"Barcel&#243; Maya Beach",note:"Riviera Maya, Mexico &#183; &#9733; 3.67"},
-  {date:"Jan 02, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.55"},
-  {date:"Jan 01, 2016",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 3.56"},
-  {date:"Dec 31, 2015",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.57"},
-  {date:"Dec 30, 2015",venue:"Madison Square Garden",note:"New York, NY &#183; &#9733; 4.31"},
-  {date:"Sep 06, 2015",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.57"},
-  {date:"Sep 05, 2015",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.82"},
-  {date:"Sep 04, 2015",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.82"},
-  {date:"Dec 31, 2014",venue:"American Airlines Arena",note:"Miami, FL &#183; &#9733; 4.28"},
-  {date:"Oct 18, 2014",venue:"Key Arena",note:"Seattle, WA &#183; &#9733; 3.17"},
-  {date:"Aug 31, 2014",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.33"},
-  {date:"Aug 30, 2014",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.09"},
-  {date:"Aug 29, 2014",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.31"},
-  {date:"Aug 03, 2014",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA &#183; &#9733; 4.22"},
-  {date:"Aug 02, 2014",venue:"Oak Mountain Amphitheatre",note:"Pelham, AL &#183; &#9733; 3.58"},
-  {date:"Aug 01, 2014",venue:"Amphitheater at the Wharf",note:"Orange Beach, AL &#183; &#9733; 3.84"},
-  {date:"Sep 01, 2013",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.72"},
-  {date:"Aug 31, 2013",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 4.19"},
-  {date:"Aug 30, 2013",venue:"Dick's Sporting Goods Park",note:"Commerce City, CO &#183; &#9733; 3.88"},
-  {date:"Aug 25, 2012",venue:"Aaron's Amphitheatre at Lakewood",note:"Atlanta, GA &#183; &#9733; 3.29"},
-  {date:"Aug 24, 2012",venue:"Oak Mountain Amphitheatre",note:"Pelham, AL &#183; &#9733; 3.93"},
-  {date:"Jun 15, 2011",venue:"Verizon Wireless Amphitheatre at Encore Park",note:"Alpharetta, GA &#183; &#9733; 3.28"},
-  {date:"Jun 10, 2009",venue:"Thompson-Boling Arena",note:"Knoxville, TN &#183; &#9733; 3.65"},
-];
-
-const gooseShows = [
-  {date:"Dec 13, 2025",venue:"Amica Mutual Pavilion",note:"Providence, RI &#183; Goosemas"},
-  {date:"Dec 12, 2025",venue:"Amica Mutual Pavilion",note:"Providence, RI &#183; Goosemas"},
-  {date:"Sep 24, 2025",venue:"Louisville Palace Theatre",note:"Louisville, KY"},
-  {date:"Sep 23, 2025",venue:"Louisville Palace Theatre",note:"Louisville, KY"},
-  {date:"Jun 07, 2025",venue:"Fiddler's Green Amphitheatre",note:"Greenwood Village, CO"},
-  {date:"Jun 06, 2025",venue:"Fiddler's Green Amphitheatre",note:"Greenwood Village, CO"},
-  {date:"May 10, 2025",venue:"El Ganzo Oasis",note:"San Jos&#233; del Cabo, Mexico &#183; Viva El Gonzo Fest &#183; electric set"},
-  {date:"May 10, 2025",venue:"El Ganzo Oasis",note:"San Jos&#233; del Cabo, Mexico &#183; Viva El Gonzo Fest &#183; acoustic set"},
-  {date:"May 09, 2025",venue:"El Ganzo Oasis",note:"San Jos&#233; del Cabo, Mexico &#183; Viva El Gonzo Fest"},
-  {date:"May 08, 2025",venue:"El Ganzo Oasis",note:"San Jos&#233; del Cabo, Mexico &#183; Viva El Gonzo Fest"},
-  {date:"Dec 30, 2024",venue:"Moody Center",note:"Austin, TX"},
-  {date:"Dec 14, 2024",venue:"North Charleston Coliseum",note:"North Charleston, SC"},
-  {date:"Dec 13, 2024",venue:"North Charleston Coliseum",note:"North Charleston, SC"},
-  {date:"Nov 10, 2024",venue:"Andrew J Brady Music Center",note:"Cincinnati, OH"},
-  {date:"Nov 09, 2024",venue:"Andrew J Brady Music Center",note:"Cincinnati, OH"},
-  {date:"Nov 08, 2024",venue:"Andrew J Brady Music Center",note:"Cincinnati, OH"},
-  {date:"Jun 30, 2024",venue:"Westville Music Bowl",note:"New Haven, CT"},
-  {date:"Jun 29, 2024",venue:"Forest Hills Stadium",note:"Queens, NY"},
-  {date:"Jun 28, 2024",venue:"Mann Center for the Performing Arts",note:"Philadelphia, PA"},
-  {date:"Jun 22, 2024",venue:"Fox Theatre",note:"Atlanta, GA"},
-  {date:"Jun 21, 2024",venue:"Fox Theatre",note:"Atlanta, GA"},
-  {date:"Jun 20, 2024",venue:"Fox Theatre",note:"Atlanta, GA"},
-  {date:"Jun 08, 2024",venue:"Fiddler's Green Amphitheatre",note:"Greenwood Village, CO"},
-  {date:"Jun 07, 2024",venue:"Fiddler's Green Amphitheatre",note:"Greenwood Village, CO"},
-  {date:"Dec 09, 2023",venue:"Hampton Coliseum",note:"Hampton, VA"},
-  {date:"Dec 08, 2023",venue:"Hampton Coliseum",note:"Hampton, VA"},
-  {date:"Oct 07, 2023",venue:"West Lawn at Lory Student Center",note:"Fort Collins, CO"},
-  {date:"Oct 06, 2023",venue:"Red Rocks Park and Amphitheater",note:"Morrison, CO"},
-  {date:"Oct 05, 2023",venue:"Red Rocks Park and Amphitheater",note:"Morrison, CO"},
-  {date:"Sep 16, 2023",venue:"Masonic Temple",note:"Detroit, MI"},
-  {date:"Apr 23, 2023",venue:"Paramount Theatre",note:"Seattle, WA"},
-  {date:"Apr 22, 2023",venue:"Paramount Theatre",note:"Seattle, WA"},
-  {date:"Mar 25, 2023",venue:"The Met",note:"Philadelphia, PA"},
-  {date:"Mar 24, 2023",venue:"The Met",note:"Philadelphia, PA"},
-  {date:"Dec 31, 2022",venue:"Andrew J Brady Music Center",note:"Cincinnati, OH"},
-  {date:"Dec 30, 2022",venue:"Andrew J Brady Music Center",note:"Cincinnati, OH"},
-  {date:"Dec 17, 2022",venue:"1STBANK Center",note:"Broomfield, CO"},
-  {date:"Dec 16, 2022",venue:"1STBANK Center",note:"Broomfield, CO"},
-  {date:"Aug 18, 2022",venue:"Red Rocks Park and Amphitheater",note:"Morrison, CO"},
-  {date:"Aug 17, 2022",venue:"Dillon Amphitheatre",note:"Dillon, CO"},
-  {date:"Aug 16, 2022",venue:"Dillon Amphitheatre",note:"Dillon, CO"},
-  {date:"Mar 05, 2022",venue:"Brooklyn Bowl",note:"Nashville, TN"},
-  {date:"Jul 10, 2021",venue:"Sculpture Park at Denver Performing Arts Center",note:"Denver, CO"},
-  {date:"Jul 09, 2021",venue:"Sculpture Park at Denver Performing Arts Center",note:"Denver, CO"},
-];
-
 function renderTourLog() {
   function renderBand(shows, containerId) {
     const el = document.getElementById(containerId);
